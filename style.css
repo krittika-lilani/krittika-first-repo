@@ -1,0 +1,251 @@
+/* Y2K Film Folder Archive Style */
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  padding: 40px 20px;
+  background:
+    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 35%),
+    linear-gradient(135deg, #f8f4ea, #e9edf2);
+  color: #111;
+  font-family: "Courier New", Courier, monospace;
+  line-height: 1.6;
+}
+
+/* Main page container */
+main,
+body > div,
+article {
+  max-width: 900px;
+  margin: 0 auto;
+  background: #d8e4ef;
+  border: 1.5px solid #1b1b1b;
+  border-radius: 12px;
+  padding: 34px;
+  box-shadow:
+    8px 8px 0 rgba(33, 55, 88, 0.25),
+    inset 0 0 40px rgba(255, 255, 255, 0.45);
+  position: relative;
+}
+
+/* Folder tab */
+main::before,
+body > div::before,
+article::before {
+  content: "krittika.first.website";
+  position: absolute;
+  top: -32px;
+  left: 28px;
+  background: #d8e4ef;
+  border: 1.5px solid #1b1b1b;
+  border-bottom: none;
+  border-radius: 12px 12px 0 0;
+  padding: 8px 22px;
+  font-size: 14px;
+  color: #111;
+}
+
+/* Archive label */
+main::after,
+body > div::after,
+article::after {
+  content: "ARCHIVE 001";
+  position: absolute;
+  right: 28px;
+  top: 24px;
+  background: #9eb6d1;
+  border: 1px solid #6e829b;
+  padding: 10px 16px;
+  font-size: 14px;
+  letter-spacing: 1px;
+  color: #111;
+  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+}
+
+/* Headings */
+h1 {
+  margin-top: 40px;
+  font-size: clamp(2.2rem, 6vw, 4.5rem);
+  font-weight: 400;
+  letter-spacing: 0;
+  text-align: center;
+  color: #050505;
+  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+}
+
+h2 {
+  margin-top: 46px;
+  margin-bottom: 16px;
+  background: #294f87;
+  color: #fff;
+  display: inline-block;
+  padding: 6px 12px;
+  border-radius: 4px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+h3 {
+  margin-top: 28px;
+  font-size: 1rem;
+  text-transform: uppercase;
+  border-bottom: 1px dashed #111;
+  display: inline-block;
+}
+
+/* Paragraphs */
+p {
+  max-width: 720px;
+  margin: 14px auto;
+  font-size: 1rem;
+}
+
+/* Lists */
+ul {
+  max-width: 680px;
+  margin: 16px auto;
+  padding: 18px 24px 18px 42px;
+  background:
+    linear-gradient(#cfd9e6 1px, transparent 1px),
+    linear-gradient(90deg, #cfd9e6 1px, transparent 1px),
+    #f6f1e6;
+  background-size: 22px 22px;
+  border: 1px solid #b7b0a0;
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+}
+
+li {
+  margin: 6px 0;
+}
+
+/* Blockquote or highlighted notes */
+blockquote {
+  max-width: 700px;
+  margin: 28px auto;
+  padding: 18px 22px;
+  background: #f7f0dc;
+  border: 1px solid #b9ad96;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.14);
+  position: relative;
+}
+
+blockquote::before {
+  content: "";
+  position: absolute;
+  width: 90px;
+  height: 26px;
+  top: -14px;
+  left: 28px;
+  background: rgba(214, 196, 155, 0.65);
+  transform: rotate(-2deg);
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #111;
+  background: #f6f1e6;
+  padding: 8px;
+  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.18);
+  filter: contrast(0.95) saturate(0.85);
+}
+
+/* Give images a scanned-object feeling */
+p img,
+li img {
+  display: block;
+  margin: 28px auto;
+  transform: rotate(-1deg);
+}
+
+/* Links */
+a {
+  color: #173f78;
+  text-decoration: none;
+  border-bottom: 1px dashed #173f78;
+}
+
+a:hover {
+  background: #173f78;
+  color: #fff;
+}
+
+/* Code text */
+code {
+  background: #eef3f8;
+  border: 1px solid #9eb6d1;
+  padding: 2px 5px;
+  font-family: "Courier New", Courier, monospace;
+}
+
+/* Horizontal dividers as film-strip lines */
+hr {
+  border: none;
+  height: 34px;
+  margin: 42px 0;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      #111 0 10px,
+      transparent 10px 18px
+    );
+  opacity: 0.75;
+}
+
+/* Soft paper grain */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.18;
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
+  background-size: 4px 4px;
+}
+
+/* Selection highlight */
+::selection {
+  background: #294f87;
+  color: #fff;
+}
+
+/* Mobile layout */
+@media (max-width: 700px) {
+  body {
+    padding: 34px 12px;
+  }
+
+  main,
+  body > div,
+  article {
+    padding: 24px 18px;
+  }
+
+  main::after,
+  body > div::after,
+  article::after {
+    position: static;
+    display: inline-block;
+    margin-bottom: 18px;
+  }
+
+  h1 {
+    text-align: left;
+    font-size: 2.4rem;
+  }
+
+  h2 {
+    font-size: 0.9rem;
+  }
+
+  ul {
+    padding-left: 34px;
+  }
+}
