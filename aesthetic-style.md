@@ -1,70 +1,47 @@
-# Aesthetic Style: Y2K Film Folder Archive
+# Aesthetic Style: Retro Browser Window
 
-For my website, I chose a Y2K computer folder / film archive aesthetic. My inspiration came from images of old computer folders, stationery, film negatives, scanned photographs, stamps, paper scraps, and taped objects. I wanted the page to feel like a small personal archive rather than a polished corporate website.
+For my updated website, I used a retro computer-window aesthetic inspired by early internet interfaces, simple browser pop-ups, and graphic educational web visuals.
 
-The original website was a very simple “Hello, World!” page, and I wanted to keep that text intact. Instead of replacing the basic message, I treated “Hello, World!” as the first file or first note inside a digital folder system.
+The page keeps the original “Hello, World!” text, but places it inside a large cream-colored browser window. The background uses a bright orange grid, which gives the site a playful digital feeling while still keeping the composition simple and readable.
 
-## Main aesthetic idea
+## Visual inspiration
 
-The website is designed to feel like a desktop folder, a scrapbook, and a film contact sheet at the same time. It uses visual references from:
+The design is inspired by:
 
-- old blue computer folders
-- Y2K desktop interfaces
-- film photography
-- scanned stickers and stamps
-- taped paper notes
-- archive labels
-- typewriter and monospace text
-- physical objects placed on a flatbed scanner
+- early web browser windows
+- old computer pop-ups
+- Y2K internet graphics
+- educational software layouts
+- bold grid backgrounds
+- simple black outlines
+- typewriter-style text
 
-The goal was not to make the website look cute or overly decorative. I wanted it to feel more like a personal archive: slightly nostalgic, organized, handmade, and still in progress.
+## Design choices
 
-## Color palette
+### Color
 
-The color palette is mostly soft blue, off-white, black, and muted grey.
+The main colors are orange, yellow, cream, and black.
 
-I chose blue because it reminds me of old computer folders and file systems. The off-white background makes the site feel like scanned paper or a physical desktop surface. Black text keeps the page readable and gives it a printed, typewritten feeling.
+The orange grid background creates energy and makes the page feel playful. The cream window softens the design and makes the text easier to read. The black outlines make the shapes feel graphic and cartoon-like.
 
-Main colors used:
+### Typography
 
-- soft folder blue
-- pale grey-blue
-- off-white
-- black
-- muted navy
-- beige tape tones
+I used a monospace/typewriter-style font because it connects to coding, GitHub, and beginner programming. Since “Hello, World!” is often the first phrase people write when learning code, the typewriter feeling makes the page feel connected to that learning process.
 
-## Typography
+### Composition
 
-The typography is inspired by typewriters, old computer interfaces, and file labels.
+The layout is centered around one large browser-style window. Smaller windows float around it to create depth and make the site feel like a desktop interface.
 
-I used monospace-style text because it feels connected to coding, archives, folders, and early digital interfaces. This also connects to the fact that this is my first coding assignment. The typography is simple, but it creates a clear mood.
+The bottom floating window includes a live clock, which adds a small interactive element without making the website too complicated.
 
-“Hello, World!” remains the main text on the page because it represents the beginning of learning code.
+## Why this aesthetic fits
 
-## Composition
+This aesthetic fits the assignment because it modifies a basic website template through visual decisions like color, spacing, typography, composition, borders, and layering.
 
-The layout is based on stacked horizontal folder sections. Each section looks like a drawer or file divider. The curved folder tabs are inspired by physical folders and desk organizers.
+The website is still simple, but it now has a clear visual identity. It feels like a playful first coding project rather than a default “Hello, World!” page.
 
-The images are placed like objects sitting on top of the folder surface instead of being perfectly aligned in a grid. This makes the page feel more like a scanned desk or personal archive.
+## Files used
 
-Some images overlap slightly to create a scrapbook effect, but the overall layout still remains controlled and readable.
-
-## Image choices
-
-I used film and archival elements to build the mood of the page. These include:
-
-- a postage stamp
-- film negatives
-- a taped black-and-white photo
-- a grainy film photograph
-
-These images make the website feel personal and physical. They also contrast with the digital folder layout, which creates a mix between analog memory and digital organization.
-
-## Why this aesthetic fits the assignment
-
-This assignment asked us to modify a website template through vibe coding and pay attention to color, composition, typography, and aesthetic details.
-
-I chose this aesthetic because it allowed me to transform a very simple beginner website into something with a stronger visual identity, while still keeping the code understandable. The website is not just decorated randomly; the design choices are connected to the idea of files, archives, memory, and early coding.
-
-The final website keeps the original “Hello, World!” text, but reimagines it as part of a personal digital archive.
+- `index.html` controls the structure of the page.
+- `style.css` controls the orange grid, browser windows, typography, borders, and layout.
+- `aesthetic-style.md` explains the design style and choices.
