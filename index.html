@@ -8,8 +8,56 @@
 </head>
 
 <body>
-  <div class="title">
-    <img src="images/hello-world.png" alt="hello world...?">
+
+  <div class="mini-window top-right">
+    <div class="mini-bar">
+      <span></span><span></span><span></span>
+    </div>
   </div>
+
+  <main class="main-window">
+    <div class="window-bar">
+      <span class="yellow"></span>
+      <span></span>
+      <span></span>
+    </div>
+
+    <section class="content">
+      <h1>Hello, World!</h1>
+      <p>This is my first Git repository created with GitHub Desktop.</p>
+      <p>Welcome to version control.</p>
+    </section>
+  </main>
+
+  <div class="clock-window">
+    <div class="mini-bar">
+      <span></span><span></span><span></span>
+    </div>
+    <p id="clock">00:00:00</p>
+  </div>
+
+  <div class="caption-window">
+    <div class="mini-bar">
+      <span></span><span></span><span></span>
+    </div>
+    <p>krittika.first.website</p>
+  </div>
+
+  <script>
+    function updateClock() {
+      const now = new Date();
+      document.getElementById("clock").textContent =
+        now.toLocaleTimeString([], {
+          hour: "2-digit",
+          minute: "2-digit",
+          second: "2-digit"
+        });
+    }
+
+    updateClock();
+    setInterval(updateClock, 1000);
+  </script>
+
 </body>
 </html>
+
