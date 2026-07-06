@@ -1,251 +1,254 @@
-/* Y2K Film Folder Archive Style */
-
 * {
   box-sizing: border-box;
 }
 
 body {
   margin: 0;
-  padding: 40px 20px;
+  min-height: 100vh;
+  padding: 60px 24px;
   background:
-    radial-gradient(circle at top left, rgba(255, 255, 255, 0.9), transparent 35%),
-    linear-gradient(135deg, #f8f4ea, #e9edf2);
-  color: #111;
+    linear-gradient(rgba(20, 20, 20, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(20, 20, 20, 0.03) 1px, transparent 1px),
+    #f6f3ed;
+  background-size: 18px 18px;
   font-family: "Courier New", Courier, monospace;
-  line-height: 1.6;
+  color: #111;
 }
 
-/* Main page container */
-main,
-body > div,
-article {
-  max-width: 900px;
+.folder {
+  max-width: 1050px;
+  min-height: 720px;
   margin: 0 auto;
-  background: #d8e4ef;
-  border: 1.5px solid #1b1b1b;
-  border-radius: 12px;
-  padding: 34px;
-  box-shadow:
-    8px 8px 0 rgba(33, 55, 88, 0.25),
-    inset 0 0 40px rgba(255, 255, 255, 0.45);
   position: relative;
+  background: #dbe7f1;
+  border: 2px solid #1f1f1f;
+  border-radius: 20px;
+  padding: 90px 70px 60px;
+  box-shadow: 14px 14px 0 rgba(40, 50, 60, 0.18);
+  overflow: hidden;
 }
 
-/* Folder tab */
-main::before,
-body > div::before,
-article::before {
-  content: "krittika.first.website";
+.folder::before,
+.folder::after {
+  content: "";
   position: absolute;
-  top: -32px;
-  left: 28px;
-  background: #d8e4ef;
-  border: 1.5px solid #1b1b1b;
+  left: 0;
+  width: 100%;
+  height: 1px;
+  background: rgba(30, 30, 30, 0.25);
+}
+
+.folder::before {
+  top: 250px;
+}
+
+.folder::after {
+  top: 500px;
+}
+
+.folder-tab {
+  position: absolute;
+  top: -44px;
+  left: 40px;
+  width: 330px;
+  height: 70px;
+  padding: 20px 30px;
+  background: #dbe7f1;
+  border: 2px solid #1f1f1f;
   border-bottom: none;
-  border-radius: 12px 12px 0 0;
-  padding: 8px 22px;
-  font-size: 14px;
-  color: #111;
+  border-radius: 18px 18px 0 0;
+  font-size: 20px;
+  letter-spacing: 1px;
 }
 
-/* Archive label */
-main::after,
-body > div::after,
-article::after {
-  content: "ARCHIVE 001";
+.archive-label {
   position: absolute;
-  right: 28px;
-  top: 24px;
-  background: #9eb6d1;
-  border: 1px solid #6e829b;
-  padding: 10px 16px;
-  font-size: 14px;
-  letter-spacing: 1px;
-  color: #111;
-  box-shadow: 3px 3px 0 rgba(0, 0, 0, 0.15);
+  top: 42px;
+  right: 48px;
+  background: #9fb7d1;
+  border: 2px solid #6f88a3;
+  padding: 16px 26px;
+  font-size: 20px;
+  letter-spacing: 4px;
+  box-shadow: 5px 5px 0 rgba(50, 60, 70, 0.18);
 }
 
-/* Headings */
-h1 {
-  margin-top: 40px;
-  font-size: clamp(2.2rem, 6vw, 4.5rem);
-  font-weight: 400;
-  letter-spacing: 0;
+.hero {
   text-align: center;
-  color: #050505;
-  text-shadow: 2px 2px 0 rgba(255, 255, 255, 0.8);
+  margin-top: 50px;
+  position: relative;
+  z-index: 2;
 }
 
-h2 {
-  margin-top: 46px;
-  margin-bottom: 16px;
-  background: #294f87;
-  color: #fff;
-  display: inline-block;
-  padding: 6px 12px;
-  border-radius: 4px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  letter-spacing: 1px;
+h1 {
+  margin: 0 0 45px;
+  font-size: clamp(3.2rem, 8vw, 6rem);
+  font-weight: 400;
+  letter-spacing: 2px;
+  text-shadow: 5px 4px 0 rgba(255, 255, 255, 0.75);
 }
 
-h3 {
-  margin-top: 28px;
-  font-size: 1rem;
-  text-transform: uppercase;
-  border-bottom: 1px dashed #111;
-  display: inline-block;
+.intro {
+  font-size: 22px;
+  margin: 18px 0;
 }
 
-/* Paragraphs */
-p {
-  max-width: 720px;
-  margin: 14px auto;
-  font-size: 1rem;
+.asset {
+  position: absolute;
+  max-width: 260px;
+  z-index: 3;
+  filter: saturate(0.9) contrast(0.95);
 }
 
-/* Lists */
-ul {
-  max-width: 680px;
-  margin: 16px auto;
-  padding: 18px 24px 18px 42px;
+.film {
+  width: 420px;
+  max-width: none;
+  left: 70px;
+  top: 300px;
+  transform: rotate(-7deg);
+}
+
+.polaroid {
+  width: 230px;
+  right: 95px;
+  top: 320px;
+  transform: rotate(3deg);
+}
+
+.stamp {
+  width: 210px;
+  right: 260px;
+  top: 445px;
+  transform: rotate(-4deg);
+}
+
+.skyline {
+  width: 245px;
+  left: 430px;
+  top: 430px;
+  transform: rotate(2deg);
+  opacity: 0.9;
+}
+
+.note {
+  position: absolute;
+  left: 55px;
+  top: 430px;
+  width: 210px;
+  padding: 24px 20px;
   background:
-    linear-gradient(#cfd9e6 1px, transparent 1px),
-    linear-gradient(90deg, #cfd9e6 1px, transparent 1px),
-    #f6f1e6;
+    linear-gradient(#bed0e2 1px, transparent 1px),
+    linear-gradient(90deg, #bed0e2 1px, transparent 1px),
+    #f4f0df;
   background-size: 22px 22px;
-  border: 1px solid #b7b0a0;
-  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+  border: 1px solid rgba(30, 30, 30, 0.25);
+  transform: rotate(-3deg);
+  z-index: 4;
+  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.12);
 }
 
-li {
+.note::before {
+  content: "";
+  position: absolute;
+  top: -18px;
+  left: 45px;
+  width: 95px;
+  height: 28px;
+  background: rgba(221, 205, 170, 0.8);
+  transform: rotate(2deg);
+}
+
+.note h2 {
+  margin: 0 0 14px;
+  font-size: 22px;
+}
+
+.note p {
+  margin: 6px 0;
+  font-size: 16px;
+}
+
+.files {
+  position: absolute;
+  right: 210px;
+  bottom: 100px;
+  z-index: 5;
+  color: #123c74;
+  font-size: 15px;
+}
+
+.files p {
   margin: 6px 0;
 }
 
-/* Blockquote or highlighted notes */
-blockquote {
-  max-width: 700px;
-  margin: 28px auto;
-  padding: 18px 22px;
-  background: #f7f0dc;
-  border: 1px solid #b9ad96;
-  box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.14);
-  position: relative;
-}
-
-blockquote::before {
-  content: "";
+.status {
   position: absolute;
-  width: 90px;
-  height: 26px;
-  top: -14px;
-  left: 28px;
-  background: rgba(214, 196, 155, 0.65);
-  transform: rotate(-2deg);
+  left: 55px;
+  bottom: 55px;
+  background: #e8edf2;
+  border: 1px solid rgba(20, 20, 20, 0.18);
+  box-shadow: 4px 4px 0 rgba(0, 0, 0, 0.12);
+  z-index: 5;
 }
 
-/* Images */
-img {
-  max-width: 100%;
-  height: auto;
-  border: 1px solid #111;
-  background: #f6f1e6;
-  padding: 8px;
-  box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.18);
-  filter: contrast(0.95) saturate(0.85);
+.status p {
+  margin: 0;
+  padding: 8px 18px;
+  background: #9fb7d1;
+  border-bottom: 1px solid rgba(20, 20, 20, 0.15);
 }
 
-/* Give images a scanned-object feeling */
-p img,
-li img {
+.status span {
   display: block;
-  margin: 28px auto;
-  transform: rotate(-1deg);
+  padding: 10px 18px;
+  color: #0b3a78;
 }
 
-/* Links */
-a {
-  color: #173f78;
-  text-decoration: none;
-  border-bottom: 1px dashed #173f78;
-}
-
-a:hover {
-  background: #173f78;
-  color: #fff;
-}
-
-/* Code text */
-code {
-  background: #eef3f8;
-  border: 1px solid #9eb6d1;
-  padding: 2px 5px;
-  font-family: "Courier New", Courier, monospace;
-}
-
-/* Horizontal dividers as film-strip lines */
-hr {
-  border: none;
-  height: 34px;
-  margin: 42px 0;
-  background:
-    repeating-linear-gradient(
-      90deg,
-      #111 0 10px,
-      transparent 10px 18px
-    );
-  opacity: 0.75;
-}
-
-/* Soft paper grain */
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.18;
-  background-image:
-    linear-gradient(rgba(0, 0, 0, 0.05) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0, 0, 0, 0.04) 1px, transparent 1px);
-  background-size: 4px 4px;
-}
-
-/* Selection highlight */
-::selection {
-  background: #294f87;
-  color: #fff;
-}
-
-/* Mobile layout */
-@media (max-width: 700px) {
-  body {
-    padding: 34px 12px;
+@media (max-width: 800px) {
+  .folder {
+    padding: 90px 28px 420px;
   }
 
-  main,
-  body > div,
-  article {
-    padding: 24px 18px;
+  .folder-tab {
+    width: 260px;
+    font-size: 15px;
   }
 
-  main::after,
-  body > div::after,
-  article::after {
-    position: static;
+  .archive-label {
+    position: relative;
+    top: auto;
+    right: auto;
     display: inline-block;
-    margin-bottom: 18px;
+    margin-bottom: 20px;
+    font-size: 14px;
   }
 
-  h1 {
-    text-align: left;
-    font-size: 2.4rem;
+  .hero {
+    margin-top: 20px;
   }
 
-  h2 {
-    font-size: 0.9rem;
+  .intro {
+    font-size: 16px;
   }
 
-  ul {
-    padding-left: 34px;
+  .asset,
+  .note,
+  .files,
+  .status {
+    position: relative;
+    left: auto;
+    right: auto;
+    top: auto;
+    bottom: auto;
+    display: block;
+    margin: 24px auto;
+  }
+
+  .film,
+  .polaroid,
+  .stamp,
+  .skyline {
+    width: 80%;
+    max-width: 320px;
   }
 }
