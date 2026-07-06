@@ -1,1 +1,1 @@
-# supreme-bassoon
+# krittika-first-repo
