@@ -1,1 +1,2 @@
 # krittika-first-repo
+hi
