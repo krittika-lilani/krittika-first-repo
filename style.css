@@ -1,3 +1,19 @@
+:root {
+  --page-bg: #fffaf2;
+  --dark-brown: #3a2618;
+  --chili-orange: #d66025;
+  --olive-green: #748544;
+  --soft-line: #ead9bd;
+}
+
+@font-face {
+  font-family: "Yolk Font";
+  src: url("font/Fungal-Grow100Thickness500.woff2") format("woff2");
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   box-sizing: border-box;
 }
@@ -5,156 +21,81 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background-color: #f7941d;
-  background-image:
-    linear-gradient(#ffd43b 2px, transparent 2px),
-    linear-gradient(90deg, #ffd43b 2px, transparent 2px);
-  background-size: 34px 34px;
-  font-family: "Courier New", Courier, monospace;
-  color: #111;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  overflow: hidden;
+  background: var(--page-bg);
+  color: var(--dark-brown);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
 }
 
-.main-window {
-  width: min(760px, 88vw);
-  min-height: 460px;
-  background: #ebe8d8;
-  border: 3px solid #111;
-  border-radius: 42px;
-  box-shadow: 10px 12px 0 #111;
-  position: relative;
-  z-index: 3;
-}
-
-.window-bar {
-  height: 74px;
-  border-bottom: 3px solid #111;
-  display: flex;
-  align-items: center;
-  padding-left: 36px;
-  gap: 12px;
-}
-
-.window-bar span {
-  width: 22px;
-  height: 22px;
-  border: 3px solid #111;
-  border-radius: 50%;
-  background: #ebe8d8;
-}
-
-.window-bar .yellow {
-  background: #f9c800;
-}
-
-.content {
-  padding: 48px 60px;
+.page {
+  width: min(92vw, 760px);
+  margin: 0 auto;
+  padding: 72px 0 96px;
   text-align: center;
 }
 
-h1 {
-  margin: 0 0 34px;
-  font-size: clamp(3rem, 8vw, 6rem);
-  font-weight: 700;
-  line-height: 1;
-  letter-spacing: 2px;
+.canvas-section {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
 }
 
-p {
-  margin: 18px auto;
-  max-width: 620px;
-  font-size: clamp(1.1rem, 2.4vw, 1.8rem);
-  line-height: 1.35;
+#static-canvas-container {
+  width: min(92vw, 600px);
+  aspect-ratio: 1;
 }
 
-.mini-window,
-.clock-window,
-.caption-window {
-  position: absolute;
-  background: #ebe8d8;
-  border: 3px solid #111;
-  border-radius: 22px;
-  box-shadow: 7px 8px 0 #111;
+#static-canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
 }
 
-.top-right {
-  width: 150px;
-  height: 100px;
-  top: 80px;
-  right: 9vw;
-  z-index: 1;
+.yolk-button {
+  appearance: none;
+  border: 1px solid rgba(58, 38, 24, 0.18);
+  border-radius: 999px;
+  background: #fff4e4;
+  color: var(--dark-brown);
+  cursor: pointer;
+  font-family: "Yolk Font", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.12rem;
+  font-weight: normal;
+  letter-spacing: 0;
+  padding: 12px 24px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
 }
 
-.clock-window {
-  width: 230px;
-  height: 120px;
-  left: 7vw;
-  bottom: 95px;
-  z-index: 6;
+.yolk-button:hover {
+  background: #ffe7cc;
+  border-color: rgba(214, 96, 37, 0.36);
+  transform: translateY(-1px);
 }
 
-.caption-window {
-  width: 430px;
-  right: 8vw;
-  bottom: 45px;
-  z-index: 7;
+.yolk-button:focus-visible {
+  outline: 3px solid rgba(116, 133, 68, 0.28);
+  outline-offset: 4px;
 }
 
-.mini-bar {
-  height: 34px;
-  border-bottom: 2px solid #111;
-  display: flex;
-  align-items: center;
-  padding-left: 13px;
-  gap: 6px;
+.section-divider {
+  width: min(88vw, 640px);
+  height: 1px;
+  margin: 68px auto 0;
+  background: var(--soft-line);
 }
 
-.mini-bar span {
-  width: 9px;
-  height: 9px;
-  border: 2px solid #111;
-  border-radius: 50%;
-  background: #ebe8d8;
+.future-section {
+  min-height: 260px;
 }
 
-.clock-window p {
-  margin: 0;
-  padding-top: 24px;
-  text-align: center;
-  font-size: 1.4rem;
-}
-
-.caption-window p {
-  margin: 0;
-  padding: 14px 18px 18px;
-  font-size: 1.1rem;
-  text-align: center;
-}
-
-@media (max-width: 700px) {
-  body {
-    overflow: auto;
-    padding: 40px 16px;
-  }
-
-  .main-window {
-    min-height: auto;
-    border-radius: 28px;
-  }
-
-  .content {
-    padding: 38px 24px;
-  }
-
-  .mini-window,
-  .clock-window,
-  .caption-window {
-    display: none;
+@media (max-width: 680px) {
+  .page {
+    padding-top: 44px;
   }
 }
-
-
-
