@@ -40,6 +40,27 @@ body {
   gap: 28px;
 }
 
+.three-section {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  padding-top: 68px;
+}
+
+.three-canvas-group {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.three-canvas {
+  width: min(92vw, 600px);
+  min-height: 320px;
+  border-radius: 8px;
+  background: #fff4e4;
+}
+
 #static-canvas-container {
   width: min(92vw, 600px);
   aspect-ratio: 1;
@@ -97,5 +118,9 @@ body {
 @media (max-width: 680px) {
   .page {
     padding-top: 44px;
+  }
+
+  .three-canvas {
+    min-height: 260px;
   }
 }
