@@ -43,7 +43,7 @@ body {
 .three-section {
   display: grid;
   justify-items: center;
-  gap: 0;
+  gap: 56px;
   padding-top: 68px;
 }
 
@@ -58,7 +58,7 @@ body {
   width: min(92vw, 600px);
   min-height: 320px;
   border-radius: 8px;
-  background: #fff4e4;
+  background: transparent;
 }
 
 #static-canvas-container {
