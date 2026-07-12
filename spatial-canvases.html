@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Spatial Canvases | CDP Summer</title>
+    <link rel="stylesheet" href="style.css?v=2" />
+  </head>
+  <body>
+    <main class="page">
+      <nav class="site-nav" aria-label="Site navigation">
+        <a href="index.html">Home</a>
+        <a href="spatial-canvases.html">Spatial Canvases</a>
+        <a href="data-visualization.html">Data Visualization</a>
+      </nav>
+
+      <section class="canvas-section">
+        <div id="static-canvas-container"></div>
+        <button class="yolk-button" type="button">break the yolk</button>
+      </section>
+
+      <div class="section-divider" aria-hidden="true"></div>
+
+      <section class="three-section" aria-label="3D spatial canvases">
+        <div class="three-canvas-group">
+          <div id="three-canvas-forms" class="three-canvas"></div>
+        </div>
+        <div class="three-canvas-group">
+          <div id="three-canvas-light" class="three-canvas"></div>
+        </div>
+      </section>
+    </main>
+
+    <!-- This script loads Three.js from a CDN so the browser can use the THREE object. -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <!-- This script loads OrbitControls from a CDN so the 3D canvases can rotate. -->
+    <script src="https://cdn.jsdelivr.net/npm/three@0.128.0/examples/js/controls/OrbitControls.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.9.4/p5.min.js"></script>
+    <!-- This script loads my custom Three.js sketch for #three-canvas-forms. -->
+    <script src="three-breakfast-forms.js"></script>
+    <script src="three-breakfast-light.js?v=2"></script>
+    <script src="sketch-static.js"></script>
+  </body>
+</html>
