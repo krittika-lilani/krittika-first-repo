@@ -1,0 +1,12 @@
+name,start,end,category
+Boil the water,0,6,Water
+Mix garlic yogurt,1,5,Cold prep
+Get distracted,3,7,Interruption
+Poach the first egg,6,9,Eggs
+Poach the second egg,6,9,Eggs
+Melt butter and chili,9,13,Heat
+Toast the bread,11,15,Bread
+Assemble the plate,13,16,Assembly
+Photograph the breakfast,16,18,Interruption
+Break the yolk,18,19,Eggs
+Eat before it gets cold,19,24,Eating

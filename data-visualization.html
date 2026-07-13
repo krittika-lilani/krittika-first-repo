@@ -3,8 +3,10 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Data Visualization | CDP Summer</title>
-    <link rel="stylesheet" href="style.css?v=2" />
+    <title>Data Visualization | Computational Design Practice</title>
+    <link rel="stylesheet" href="css/site.css" />
+    <link rel="stylesheet" href="css/data-visualization.css" />
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
   </head>
   <body>
     <main class="page assignment-page">
@@ -14,14 +16,12 @@
         <a href="data-visualization.html">Data Visualization</a>
       </nav>
 
-      <section class="assignment-header" aria-labelledby="data-viz-title">
-        <h1 id="data-viz-title">Data Visualization</h1>
-      </section>
-
       <section class="placeholder-section">
-        <p>Assignment content coming soon.</p>
+        <div id="d3-container-3"></div>
         <div id="data-viz-container"></div>
       </section>
     </main>
+
+    <script src="data-visualization/data-viz.js"></script>
   </body>
 </html>
