@@ -1,0 +1,82 @@
+.canvas-section {
+  display: grid;
+  justify-items: center;
+  gap: 28px;
+}
+
+.three-section {
+  display: grid;
+  justify-items: center;
+  gap: 56px;
+  padding-top: 68px;
+}
+
+.three-canvas-group {
+  display: grid;
+  justify-items: center;
+  gap: 0;
+  width: 100%;
+}
+
+.three-canvas {
+  width: min(92vw, 600px);
+  min-height: 320px;
+  border-radius: 8px;
+  background: transparent;
+}
+
+#static-canvas-container {
+  width: min(92vw, 600px);
+  aspect-ratio: 1;
+}
+
+#static-canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: auto !important;
+  border: 0;
+  box-shadow: none;
+  border-radius: 0;
+}
+
+.yolk-button {
+  appearance: none;
+  border: 1px solid rgba(58, 38, 24, 0.18);
+  border-radius: 999px;
+  background: #fff4e4;
+  color: var(--dark-brown);
+  cursor: pointer;
+  font-family: "Yolk Font", ui-sans-serif, system-ui, sans-serif;
+  font-size: 1.12rem;
+  font-weight: normal;
+  letter-spacing: 0;
+  padding: 12px 24px;
+  transition:
+    background-color 160ms ease,
+    border-color 160ms ease,
+    transform 160ms ease;
+}
+
+.yolk-button:hover {
+  background: #ffe7cc;
+  border-color: rgba(214, 96, 37, 0.36);
+  transform: translateY(-1px);
+}
+
+.yolk-button:focus-visible {
+  outline: 3px solid rgba(116, 133, 68, 0.28);
+  outline-offset: 4px;
+}
+
+.section-divider {
+  width: min(88vw, 640px);
+  height: 1px;
+  margin: 68px auto 0;
+  background: var(--soft-line);
+}
+
+@media (max-width: 680px) {
+  .three-canvas {
+    min-height: 260px;
+  }
+}
