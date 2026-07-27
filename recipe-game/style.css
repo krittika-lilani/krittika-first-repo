@@ -39,6 +39,7 @@ body {
   z-index: 1;
   width: 60vw;
   height: 100svh;
+  transform: translateY(1.5svh);
 }
 
 .game-title {
@@ -327,7 +328,7 @@ body {
 .recipe-cards {
   position: fixed;
   top: 6%;
-  right: 4%;
+  right: 7%;
   bottom: 6%;
   z-index: 2;
   display: flex;
