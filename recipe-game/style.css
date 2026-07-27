@@ -43,7 +43,7 @@ body {
 
 .game-title {
   position: absolute;
-  top: 2.5%;
+  top: 1.5%;
   left: 46.5%;
   z-index: 6;
   font-family: "Space Mono", monospace;
@@ -189,7 +189,7 @@ body {
 }
 
 .ingredient-holder--egg {
-  top: 24%;
+  top: 22%;
   left: 14%;
   z-index: 4;
   width: 34%;
@@ -335,12 +335,13 @@ body {
   flex-direction: column;
   gap: 14px;
   overflow-y: auto;
+  overscroll-behavior-y: contain;
   color: var(--cook-red);
   font-family: "Space Mono", monospace;
 }
 
 .recipe-card {
-  flex: 0 0 auto;
+  flex: 0 0 calc((100% - 42px) / 4);
   border: 1px solid rgba(159, 36, 31, 0.62);
   background: rgba(255, 255, 255, 0.34);
   padding: 16px;
