@@ -1,0 +1,367 @@
+:root {
+  --cook-red: #9f241f;
+  --cook-yellow-green: #f3f5ae;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  min-height: 100%;
+}
+
+body {
+  overflow: hidden;
+  background: #fff;
+  color: var(--cook-red);
+  font-family: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+    sans-serif;
+}
+
+.game-page {
+  position: relative;
+  min-height: 100svh;
+}
+
+.game-page::before {
+  position: absolute;
+  inset: 0;
+  background: url("assets/landing-gradient.png") center / cover no-repeat;
+  content: "";
+  opacity: 0.6;
+}
+
+.ingredient-collage {
+  position: relative;
+  z-index: 1;
+  width: 60vw;
+  height: 100svh;
+}
+
+.game-title {
+  position: absolute;
+  top: 2.5%;
+  left: 46.5%;
+  z-index: 6;
+  font-family: "Space Mono", monospace;
+  white-space: nowrap;
+}
+
+.game-title h1,
+.game-title p {
+  width: max-content;
+  background: linear-gradient(
+    90deg,
+    #c9242d 0%,
+    #ed7527 28%,
+    #9da3aa 48%,
+    #f5f7f8 58%,
+    #858c94 68%,
+    #7c3f98 100%
+  );
+  background-clip: text;
+  color: transparent;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.game-title h1 {
+  margin: 0;
+  background: none;
+  color: #7c3f98;
+  font-family: "Bitcount Grid Single Ink", sans-serif;
+  font-size: clamp(1.15rem, 1.75vw, 1.55rem);
+  font-weight: 700;
+  line-height: 1;
+  -webkit-text-fill-color: #7c3f98;
+}
+
+.game-title p {
+  margin: 4px 0 0;
+  background: none;
+  color: #7c3f98;
+  font-size: clamp(0.6rem, 0.78vw, 0.74rem);
+  line-height: 1.2;
+  text-transform: none;
+  -webkit-text-fill-color: #7c3f98;
+}
+
+.ingredient-holder {
+  position: absolute;
+  display: grid;
+  margin: 0;
+  place-items: center;
+  overflow: visible;
+  border: 1px solid rgba(159, 36, 31, 0.62);
+  background: rgba(255, 255, 255, 0.08);
+  cursor: pointer;
+  transition: border-color 120ms ease;
+}
+
+.ingredient-holder img {
+  display: block;
+  width: 90%;
+  height: 90%;
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+.selection-handle {
+  position: absolute;
+  z-index: 3;
+  width: 7px;
+  height: 7px;
+  border: 1px solid rgba(159, 36, 31, 0.8);
+  background: #fff;
+  transition: border-color 120ms ease;
+}
+
+.ingredient-holder.selected {
+  border-color: #1473e6;
+}
+
+.ingredient-holder.selected .selection-handle {
+  border-color: #1473e6;
+}
+
+.ingredient-holder.selected .ingredient-number {
+  color: #1473e6;
+}
+
+.ingredient-holder:focus-visible {
+  outline: 2px solid #1473e6;
+  outline-offset: 5px;
+}
+
+.selection-handle--top-left {
+  top: 0;
+  left: 0;
+  transform: translate(-50%, -50%);
+}
+
+.selection-handle--top-right {
+  top: 0;
+  right: 0;
+  transform: translate(50%, -50%);
+}
+
+.selection-handle--bottom-left {
+  bottom: 0;
+  left: 0;
+  transform: translate(-50%, 50%);
+}
+
+.selection-handle--bottom-right {
+  right: 0;
+  bottom: 0;
+  transform: translate(50%, 50%);
+}
+
+.ingredient-number {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  z-index: 1;
+  color: var(--cook-red);
+  font-size: clamp(0.72rem, 1vw, 0.95rem);
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.ingredient-holder--bread {
+  top: 2%;
+  left: 11%;
+  z-index: 2;
+  width: 34%;
+  height: 25%;
+}
+
+.ingredient-holder--cheese {
+  top: 8%;
+  left: 38%;
+  z-index: 1;
+  width: 34%;
+  height: 29%;
+}
+
+.ingredient-holder--egg {
+  top: 24%;
+  left: 14%;
+  z-index: 4;
+  width: 34%;
+  height: 33%;
+}
+
+.ingredient-holder--onion {
+  top: 29%;
+  left: 43%;
+  z-index: 4;
+  width: 32%;
+  height: 28%;
+}
+
+.ingredient-holder--tomato {
+  top: 49%;
+  left: 28%;
+  z-index: 5;
+  width: 38%;
+  height: 28%;
+}
+
+.ingredient-holder--egg img {
+  width: 78%;
+  height: 78%;
+  transform: rotate(-30deg);
+}
+
+.ingredient-holder--bread img,
+.ingredient-holder--tomato img {
+  width: 76%;
+  height: 76%;
+}
+
+.ingredient-holder--cheese img {
+  width: 82%;
+  height: 82%;
+  transform: rotate(-15deg);
+}
+
+.ingredient-holder--onion img {
+  width: 80%;
+  height: 80%;
+  transform: rotate(20deg);
+}
+
+.selected-ingredients {
+  position: absolute;
+  bottom: 6%;
+  left: 11%;
+  z-index: 6;
+  width: 78%;
+  color: var(--cook-red);
+  font-family: "Space Mono", monospace;
+}
+
+.selected-ingredients h2 {
+  margin: 0 0 5px;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.selected-ingredients ul {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 4px 16px;
+  min-height: 1rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 0.72rem;
+}
+
+.dish-form {
+  display: grid;
+  grid-template-columns: minmax(0, 0.72fr) minmax(0, 1fr) auto;
+  gap: 10px;
+  align-items: end;
+  width: 86%;
+  margin-top: 10px;
+}
+
+.dish-field {
+  display: grid;
+  gap: 4px;
+  min-width: 0;
+}
+
+.dish-field span {
+  font-size: 0.65rem;
+  font-weight: 700;
+}
+
+.dish-field input {
+  width: 100%;
+  height: 28px;
+  border: 1px solid rgba(159, 36, 31, 0.62);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--cook-red);
+  font: inherit;
+  font-size: 0.7rem;
+  outline: none;
+  padding: 5px 8px;
+}
+
+.dish-field input:focus {
+  border-color: #1473e6;
+}
+
+.dish-field input:disabled {
+  border-color: rgba(85, 85, 85, 0.35);
+  background: rgba(110, 110, 110, 0.15);
+  color: rgba(85, 85, 85, 0.55);
+  cursor: not-allowed;
+}
+
+#add-dish-button {
+  height: 28px;
+  border: 1px solid var(--cook-red);
+  border-radius: 0;
+  background: var(--cook-red);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.7rem;
+  padding: 0 14px;
+}
+
+#add-dish-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.recipe-cards {
+  position: fixed;
+  top: 6%;
+  right: 4%;
+  bottom: 6%;
+  z-index: 2;
+  display: flex;
+  width: 32vw;
+  flex-direction: column;
+  gap: 14px;
+  overflow-y: auto;
+  color: var(--cook-red);
+  font-family: "Space Mono", monospace;
+}
+
+.recipe-card {
+  flex: 0 0 auto;
+  border: 1px solid rgba(159, 36, 31, 0.62);
+  background: rgba(255, 255, 255, 0.34);
+  padding: 16px;
+}
+
+.recipe-card h2 {
+  margin: 0 0 12px;
+  font-size: 1rem;
+  line-height: 1.2;
+}
+
+.recipe-card p {
+  margin: 6px 0 0;
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.recipe-card__label {
+  font-weight: 700;
+}
+
+.recipe-card__meta {
+  opacity: 0.76;
+}

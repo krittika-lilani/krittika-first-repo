@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>lets cook! | Recipe Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <main class="game-page">
+      <section class="ingredient-collage" aria-label="Recipe ingredients">
+        <header class="game-title">
+          <h1>What's Left?</h1>
+          <p>five leftovers, many kitchens</p>
+        </header>
+
+        <figure
+          class="ingredient-holder ingredient-holder--bread"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          aria-label="Select bread"
+          data-ingredient="Bread"
+        >
+          <span class="ingredient-number">01</span>
+          <span class="selection-handle selection-handle--top-left"></span>
+          <span class="selection-handle selection-handle--top-right"></span>
+          <span class="selection-handle selection-handle--bottom-left"></span>
+          <span class="selection-handle selection-handle--bottom-right"></span>
+          <img src="assets/bread.svg" alt="Bread" />
+        </figure>
+
+        <figure
+          class="ingredient-holder ingredient-holder--cheese"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          aria-label="Select cheese"
+          data-ingredient="Cheese"
+        >
+          <span class="ingredient-number">02</span>
+          <span class="selection-handle selection-handle--top-left"></span>
+          <span class="selection-handle selection-handle--top-right"></span>
+          <span class="selection-handle selection-handle--bottom-left"></span>
+          <span class="selection-handle selection-handle--bottom-right"></span>
+          <img src="assets/cheese.svg" alt="Cheese" />
+        </figure>
+
+        <figure
+          class="ingredient-holder ingredient-holder--egg"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          aria-label="Select egg"
+          data-ingredient="Egg"
+        >
+          <span class="ingredient-number">03</span>
+          <span class="selection-handle selection-handle--top-left"></span>
+          <span class="selection-handle selection-handle--top-right"></span>
+          <span class="selection-handle selection-handle--bottom-left"></span>
+          <span class="selection-handle selection-handle--bottom-right"></span>
+          <img src="assets/egg.svg" alt="Egg" />
+        </figure>
+
+        <figure
+          class="ingredient-holder ingredient-holder--onion"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          aria-label="Select onion"
+          data-ingredient="Onion"
+        >
+          <span class="ingredient-number">04</span>
+          <span class="selection-handle selection-handle--top-left"></span>
+          <span class="selection-handle selection-handle--top-right"></span>
+          <span class="selection-handle selection-handle--bottom-left"></span>
+          <span class="selection-handle selection-handle--bottom-right"></span>
+          <img src="assets/onion.svg" alt="Onion" />
+        </figure>
+
+        <figure
+          class="ingredient-holder ingredient-holder--tomato"
+          role="button"
+          tabindex="0"
+          aria-pressed="false"
+          aria-label="Select tomato"
+          data-ingredient="Tomato"
+        >
+          <span class="ingredient-number">05</span>
+          <span class="selection-handle selection-handle--top-left"></span>
+          <span class="selection-handle selection-handle--top-right"></span>
+          <span class="selection-handle selection-handle--bottom-left"></span>
+          <span class="selection-handle selection-handle--bottom-right"></span>
+          <img src="assets/tomato.svg" alt="Tomato" />
+        </figure>
+
+        <section class="selected-ingredients" aria-labelledby="selected-ingredients-title">
+          <h2 id="selected-ingredients-title">Your ingredients</h2>
+          <ul id="selected-ingredients-list" aria-live="polite"></ul>
+
+          <form class="dish-form" id="dish-form">
+            <label class="dish-field" for="dish-name">
+              <span>What would you make?</span>
+              <input id="dish-name" name="dish-name" type="text" required disabled />
+            </label>
+
+            <label class="dish-field" for="dish-note">
+              <span>Add a little note</span>
+              <input
+                id="dish-note"
+                name="dish-note"
+                type="text"
+                maxlength="100"
+                disabled
+              />
+            </label>
+
+            <button id="add-dish-button" type="submit" disabled>Add dish</button>
+          </form>
+        </section>
+      </section>
+
+      <aside
+        class="recipe-cards"
+        id="recipe-cards"
+        aria-label="Added dishes"
+        aria-live="polite"
+      ></aside>
+
+    </main>
+
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/12.16.0/firebase-database-compat.js"></script>
+    <script src="script.js"></script>
+  </body>
+</html>
