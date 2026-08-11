@@ -4,32 +4,38 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Computational Design Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@700&family=Space+Mono:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/site.css" />
   </head>
   <body class="landing-body">
-    <main class="home-page">
-      <nav class="site-nav" aria-label="Site navigation">
-        <a href="index.html" aria-current="page">Home</a>
-        <a href="spatial-canvases.html">Spatial Canvases</a>
-        <a href="data-visualization.html">Data Visualization</a>
-        <a href="geospatial-structures.html">Geospatial Structures</a>
-        <a href="recipe-game/index.html">Engagement</a>
-      </nav>
-
-      <section class="table-scape" aria-label="An overhead table-scape illustration">
-        <div class="table-composite">
-          <img
-            class="table-scape-art"
-            src="images/table-scape.svg"
-            width="1123"
-            height="794"
-            alt="Overhead line drawing of a table scene"
-          />
-          <a class="cilbir-link" href="spatial-canvases.html" aria-label="Open Spatial Canvases">
-            <img src="images/cilbir.svg" width="1123" height="794" alt="Cilbir" />
-          </a>
-        </div>
-      </section>
+    <main class="project-grid" aria-label="Seven class projects">
+      <a class="project-cell project-cell--one" href="spatial-canvases.html#static-canvas-container">
+        <span class="project-label">2D Spatial Canvas <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="project-cell project-cell--two" href="spatial-canvases.html#three-canvas-forms">
+        <span class="project-label">3D Spatial Canvas <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="project-cell project-cell--three" href="data-visualization.html#d3-container-3">
+        <span class="project-label">Temporal Structure <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="project-cell project-cell--four" href="recipe-game/index.html#recipe-cards">
+        <span class="project-label">Relational Structure <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="project-cell project-cell--five" href="geospatial-structures.html">
+        <span class="project-label">Geospatial Structure <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="project-cell project-cell--six" href="recipe-game/index.html">
+        <span class="project-label">Engagement Component <span aria-hidden="true">→</span></span>
+      </a>
+      <a class="project-cell project-cell--seven" href="chatbot/index.html#chat-messages">
+        <span class="project-label">Agent <span aria-hidden="true">→</span></span>
+      </a>
+      <div class="project-cell project-cell--blank" aria-hidden="true"></div>
     </main>
   </body>
 </html>

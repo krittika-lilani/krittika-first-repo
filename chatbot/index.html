@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chef Agent</title>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-database-compat.js"></script>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="home-button" href="../index.html" aria-label="Go to homepage">
+      <span class="home-icon" aria-hidden="true"></span>
+    </a>
+    <main class="agent-page">
+      <header class="agent-intro">
+        <h1>Chef Agent</h1>
+        <p class="agent-description">
+          Tell me what you’re craving, what you have, or how questionable your ingredients are.
+        </p>
+      </header>
+
+      <section class="chat-container" aria-label="Chef Agent chatbot">
+        <div class="chat-messages" id="chat-messages" aria-live="polite">
+          <div class="message bot-message">
+            <div class="message-content">
+              <strong>Chef Agent:</strong> What are we working with?
+            </div>
+            <div class="message-time">Just now</div>
+          </div>
+        </div>
+
+        <div class="chat-input-area">
+          <div class="input-container">
+            <input
+              type="text"
+              id="message-input"
+              placeholder="Tell me what’s in the kitchen..."
+              maxlength="500"
+            />
+            <button id="send-button" class="send-button" type="button">
+              <span>Send</span>
+            </button>
+          </div>
+        </div>
+
+        <div class="chat-status">
+          <p>Status: <span id="chat-status">Ready to chat</span></p>
+        </div>
+      </section>
+
+      <div id="connection-status" hidden aria-live="polite"></div>
+    </main>
+
+    <script src="chat-bot.js"></script>
+  </body>
+</html>

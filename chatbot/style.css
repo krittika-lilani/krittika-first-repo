@@ -1,0 +1,274 @@
+@import url("https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@700&family=Space+Mono:wght@400;700&display=swap");
+
+:root {
+  --cook-red: #9f241f;
+  --cook-purple: #7c3f98;
+  --cook-blue: #1473e6;
+  --cook-border: rgba(159, 36, 31, 0.62);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  min-height: 100%;
+  margin: 0;
+}
+
+body {
+  background: rgba(230, 92, 0, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(249, 212, 35, 0.7),
+    rgba(230, 92, 0, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(249, 212, 35, 0.7),
+    rgba(230, 92, 0, 0.7)
+  );
+  color: var(--cook-red);
+  font-family: "Space Mono", monospace;
+}
+
+.agent-page {
+  width: min(90vw, 800px);
+  margin: 0 auto;
+  padding: clamp(54px, 8vh, 90px) 0 72px;
+}
+
+.home-button {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cook-red);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  transform: scale(1.06);
+}
+
+.home-button:focus-visible {
+  outline: 2px solid var(--cook-blue);
+  outline-offset: 3px;
+}
+
+.home-icon {
+  position: relative;
+  display: block;
+  width: 11px;
+  height: 9px;
+  margin-top: 4px;
+  background: #fff;
+}
+
+.home-icon::before {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  content: "";
+  transform: rotate(45deg);
+}
+
+.home-icon::after {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  width: 3px;
+  height: 5px;
+  background: var(--cook-red);
+  content: "";
+}
+
+.agent-intro {
+  margin-bottom: 28px;
+}
+
+.agent-intro h1 {
+  margin: 0 0 12px;
+  color: var(--cook-purple);
+  font-family: "Bitcount Grid Single Ink", sans-serif;
+  font-size: clamp(1.8rem, 4.5vw, 3rem);
+  font-weight: 700;
+  line-height: 1;
+}
+
+.agent-description {
+  max-width: 720px;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.agent-description {
+  font-size: clamp(0.8rem, 1.5vw, 1rem);
+}
+
+.chat-container {
+  overflow: hidden;
+  border: 1px solid var(--cook-border);
+  background: rgba(255, 255, 255, 0.34);
+}
+
+.chat-messages {
+  height: min(52vh, 430px);
+  overflow-y: auto;
+  overscroll-behavior-y: contain;
+  padding: 20px;
+  background: rgba(255, 255, 255, 0.2);
+}
+
+.message {
+  position: relative;
+  max-width: 80%;
+  margin-bottom: 16px;
+  padding: 12px 16px;
+  border-radius: 0;
+  word-wrap: break-word;
+}
+
+.user-message {
+  margin-left: auto;
+  border: 1px solid var(--cook-red);
+  background: var(--cook-red);
+  color: #fff;
+}
+
+.bot-message {
+  margin-right: auto;
+  border: 1px solid var(--cook-border);
+  background: rgba(255, 255, 255, 0.58);
+  color: var(--cook-red);
+}
+
+.message-content {
+  margin-bottom: 4px;
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.message-content strong {
+  font-weight: 700;
+}
+
+.message-time {
+  font-size: 0.62rem;
+  text-align: right;
+  opacity: 0.7;
+}
+
+.chat-input-area {
+  padding: 20px;
+  border-top: 1px solid var(--cook-border);
+  background: rgba(255, 255, 255, 0.22);
+}
+
+.input-container {
+  display: flex;
+  gap: 12px;
+  margin-bottom: 0;
+}
+
+#message-input {
+  min-width: 0;
+  flex: 1;
+  padding: 12px 16px;
+  border: 1px solid var(--cook-border);
+  border-radius: 0;
+  background: rgba(255, 255, 255, 0.45);
+  color: var(--cook-red);
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+#message-input::placeholder {
+  color: rgba(159, 36, 31, 0.58);
+}
+
+#message-input:focus {
+  border-color: var(--cook-blue);
+  outline: none;
+}
+
+.send-button {
+  padding: 12px 24px;
+  border: 1px solid var(--cook-red);
+  border-radius: 0;
+  background: var(--cook-red);
+  color: #fff;
+  cursor: pointer;
+  font: inherit;
+  font-size: 0.78rem;
+}
+
+.send-button:hover {
+  opacity: 0.82;
+}
+
+.send-button:focus-visible {
+  outline: 2px solid var(--cook-blue);
+  outline-offset: 3px;
+}
+
+.send-button:disabled {
+  cursor: not-allowed;
+  opacity: 0.35;
+}
+
+.chat-status {
+  padding: 12px 20px;
+  border-top: 1px solid var(--cook-border);
+  background: rgba(255, 255, 255, 0.26);
+  text-align: center;
+}
+
+.chat-status p {
+  margin: 0;
+  font-size: 0.64rem;
+}
+
+.chat-status span {
+  font-weight: 700;
+}
+
+@media (max-width: 620px) {
+  .agent-page {
+    width: min(92vw, 800px);
+    padding-top: 42px;
+  }
+
+  .chat-messages {
+    height: 48vh;
+    padding: 16px;
+  }
+
+  .message {
+    max-width: 90%;
+    padding: 10px 12px;
+  }
+
+  .chat-input-area {
+    padding: 16px;
+  }
+
+  .input-container {
+    flex-direction: column;
+    gap: 8px;
+  }
+}

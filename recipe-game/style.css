@@ -26,6 +26,64 @@ body {
   min-height: 100svh;
 }
 
+.home-button {
+  position: fixed;
+  top: 16px;
+  left: 16px;
+  z-index: 1000;
+  display: grid;
+  width: 30px;
+  height: 30px;
+  place-items: center;
+  border-radius: 50%;
+  background: var(--cook-red);
+  color: #fff;
+  font-family: Arial, sans-serif;
+  font-size: 20px;
+  line-height: 1;
+  text-decoration: none;
+}
+
+.home-button:hover {
+  transform: scale(1.06);
+}
+
+.home-button:focus-visible {
+  outline: 2px solid #1473e6;
+  outline-offset: 3px;
+}
+
+.home-icon {
+  position: relative;
+  display: block;
+  width: 11px;
+  height: 9px;
+  margin-top: 4px;
+  background: #fff;
+}
+
+.home-icon::before {
+  position: absolute;
+  top: -5px;
+  left: 0;
+  width: 9px;
+  height: 9px;
+  border-top: 2px solid #fff;
+  border-left: 2px solid #fff;
+  content: "";
+  transform: rotate(45deg);
+}
+
+.home-icon::after {
+  position: absolute;
+  bottom: 0;
+  left: 4px;
+  width: 3px;
+  height: 5px;
+  background: var(--cook-red);
+  content: "";
+}
+
 .game-page::before {
   position: absolute;
   inset: 0;
