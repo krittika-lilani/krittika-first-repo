@@ -1,18 +1,17 @@
-// ChatGPT Chat Bot - Tutorial JavaScript
-// This script demonstrates how to integrate ChatGPT API with Firebase for a simple chat application
-// It shows real-time chat functionality with AI responses and message history storage
+// Chef Agent: a food-focused chatbot with a dry, experimental-chef personality.
+// Firebase stores the shared chat history, while OpenAI generates each response
+// using the latest ten user and assistant messages as conversation memory.
 
-// SECURITY NOTE: This tutorial exposes the API key in client-side code for learning purposes only.
-// In production applications, API keys should be kept secure on the server side.
+// SECURITY NOTE: The current project calls OpenAI directly from the browser.
+// A production version should keep the API key on a secure server.
 
 // Wait for the DOM to be fully loaded before running any code
 document.addEventListener('DOMContentLoaded', function() {
   
   // ========================================
-  // STEP 1: FIREBASE CONFIGURATION
+  // FIREBASE CONFIGURATION
   // ========================================
-  // Firebase configuration object - connects your app to your Firebase project
-  // Get these values from your Firebase Console (https://console.firebase.google.com)
+  // Connect the agent to the same Firebase project used by the portfolio.
   
   const firebaseConfig = {
     apiKey: "AIzaSyDMe_hgk7nSMfyIHRS5rJ6uDb4yeJC2ASQ",
@@ -31,22 +30,22 @@ document.addEventListener('DOMContentLoaded', function() {
   const database = firebase.database();
 
   // ========================================
-  // STEP 2: CHATGPT API CONFIGURATION
+  // OPENAI CONFIGURATION AND CONVERSATION MEMORY
   // ========================================
-  // ChatGPT API configuration - get an API key from OpenAI
-  // Visit: https://platform.openai.com/api-keys to create your API key
-  
+  // Keep the existing direct API configuration for the current Chef Agent setup.
   const OPENAI_API_KEY = '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';
   const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
   
   // Rate limiting configuration
   let lastApiCall = 0;
   const MIN_CALL_INTERVAL = 1000; // Minimum 1 second between calls
+  // Keep only the latest user and assistant messages sent to OpenAI so the bot
+  // remembers recent context without allowing the request history to grow forever.
   const MAX_CONVERSATION_MESSAGES = 10;
   const conversationHistory = [];
 
   // ========================================
-  // STEP 3: GET REFERENCES TO HTML ELEMENTS
+  // PAGE ELEMENTS
   // ========================================
   // Get references to the HTML elements we want to interact with
   
@@ -57,7 +56,7 @@ document.addEventListener('DOMContentLoaded', function() {
   const connectionStatus = document.getElementById('connection-status');
 
   // ========================================
-  // STEP 4: SET UP REAL-TIME DATABASE LISTENERS
+  // REAL-TIME CHAT HISTORY
   // ========================================
   // Listen for changes to the chat messages in the database
   // This function runs every time a new message is added to Firebase
@@ -68,7 +67,8 @@ document.addEventListener('DOMContentLoaded', function() {
     // Clear the current chat display
     chatMessages.innerHTML = '';
     
-    // Add each message to the chat display
+    // Rebuild the interface from Firebase's current message history. This lets
+    // the same conversation appear for every client connected to this database path.
     Object.keys(messages).forEach(function(messageId) {
       const message = messages[messageId];
       addMessageToDisplay(message.text, message.sender, message.timestamp);
@@ -81,7 +81,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ========================================
-  // STEP 5: SET UP INPUT EVENT LISTENERS
+  // INPUT INTERACTIONS
   // ========================================
   // Handle Enter key press in the input field
   messageInput.addEventListener('keypress', function(event) {
@@ -109,7 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
-  // STEP 6: MESSAGE SENDING FUNCTION
+  // MESSAGE SUBMISSION
   // ========================================
   // This function handles the entire process of sending a message and getting an AI response
   
@@ -124,17 +124,19 @@ document.addEventListener('DOMContentLoaded', function() {
     updateChatStatus('Sending message...');
     
     try {
-      // Step 1: Save the user message to Firebase
+      // The user message and AI response are both saved in Firebase. The
+      // realtime listener above is responsible for rendering them in the UI.
+      // Save the user message to Firebase.
       await saveMessageToFirebase(messageText, 'user');
       
       // Clear the input field
       messageInput.value = '';
       
-      // Step 2: Get AI response from ChatGPT
+      // Ask the Chef Agent for a response.
       updateChatStatus('Getting AI response...');
       const aiResponse = await getChatGPTResponse(messageText);
       
-      // Step 3: Save the AI response to Firebase
+      // Save the response so the real-time listener can display it.
       await saveMessageToFirebase(aiResponse, 'bot');
       
       updateChatStatus('Ready to chat');
@@ -158,7 +160,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
-  // STEP 7: FIREBASE FUNCTIONS
+  // FIREBASE HELPERS
   // ========================================
   // Save a message to the Firebase database
   
@@ -174,11 +176,13 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
-  // STEP 8: CHATGPT API FUNCTIONS
+  // OPENAI REQUESTS AND MEMORY HELPERS
   // ========================================
   // Send a message to ChatGPT API and get a response
   
   async function getChatGPTResponse(userMessage) {
+    // Add the newest user message before building the API request so the model
+    // receives the current prompt along with recent conversation context.
     conversationHistory.push({
       role: 'user',
       content: userMessage
@@ -198,7 +202,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
     lastApiCall = Date.now();
     
-    // Retry configuration
+    // Retry temporary rate-limit failures with an increasing delay. Other
+    // errors are passed back to sendMessage for display.
     const maxRetries = 3;
     let retryCount = 0;
     
@@ -228,6 +233,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   function trimConversationHistory() {
+    // Remove the oldest entries first and retain the latest ten messages.
     if (conversationHistory.length > MAX_CONVERSATION_MESSAGES) {
       conversationHistory.splice(
         0,
@@ -243,7 +249,8 @@ document.addEventListener('DOMContentLoaded', function() {
       throw new Error('Please set your OpenAI API key. Get one from https://platform.openai.com/api-keys');
     }
     
-    // Prepare the request to ChatGPT API
+    // Prepare the request with the chef personality first, followed by the
+    // rolling user/assistant conversation history.
     const requestBody = {
       model: "gpt-3.5-turbo", // Using a valid model name
       messages: [
@@ -260,15 +267,12 @@ document.addEventListener('DOMContentLoaded', function() {
     try {
       console.log('=== CHATGPT API REQUEST DEBUG ===');
       console.log('API URL:', OPENAI_API_URL);
-      console.log('API Key (first 10 chars):', OPENAI_API_KEY.substring(0, 10) + '...');
       console.log('Request body:', JSON.stringify(requestBody, null, 2));
       
       const headers = {
         'Content-Type': 'application/json',
         'Authorization': `Bearer ${OPENAI_API_KEY}`
       };
-      
-      console.log('Request headers:', headers);
       
       const response = await fetch(OPENAI_API_URL, {
         method: 'POST',
@@ -281,6 +285,7 @@ document.addEventListener('DOMContentLoaded', function() {
       console.log('Response status text:', response.statusText);
 
       if (!response.ok) {
+        // Preserve the API's response text so the caller receives useful error details.
         let errorText = '';
         try {
           const errorData = await response.text();
@@ -292,6 +297,7 @@ document.addEventListener('DOMContentLoaded', function() {
         throw new Error(`API request failed: ${response.status} ${response.statusText}\nResponse: ${errorText}`);
       }
 
+      // Validate the expected Chat Completions response before reading its text.
       const data = await response.json();
       console.log('ChatGPT API response:', data);
       
@@ -321,11 +327,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
-  // STEP 9: UI HELPER FUNCTIONS
+  // CHAT INTERFACE HELPERS
   // ========================================
   // Add a message to the chat display
   
   function addMessageToDisplay(text, sender, timestamp) {
+    // Use the sender value to choose the user or bot card style.
     const messageDiv = document.createElement('div');
     messageDiv.className = `message ${sender}-message`;
     
@@ -424,11 +431,12 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 
   // ========================================
-  // STEP 10: CONNECTION STATUS MONITORING
+  // FIREBASE CONNECTION STATUS
   // ========================================
   // Listen for connection state changes
   
   database.ref('.info/connected').on('value', function(snapshot) {
+    // Firebase exposes this special path for live connection-state updates.
     const connected = snapshot.val();
     
     if (connected) {
@@ -441,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function() {
   });
 
   // ========================================
-  // STEP 11: INITIALIZATION
+  // INITIAL PAGE STATE
   // ========================================
   // Set up initial state when the page loads
   
@@ -451,6 +459,7 @@ document.addEventListener('DOMContentLoaded', function() {
   console.log('ChatGPT Chat Bot initialized successfully!');
   
   // Add a test function to the global scope for debugging
+  // It can be run manually from the browser console and is not part of normal chat flow.
   window.testOpenAI = async function() {
     console.log('=== TESTING OPENAI API ===');
     try {

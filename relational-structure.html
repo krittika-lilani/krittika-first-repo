@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Actor Network | Relational Structure</title>
+    <base href="relational-structure/" />
+    <link rel="stylesheet" href="relational-structure.css" />
+    <link rel="stylesheet" href="../css/site.css" />
+  </head>
+  <body class="relational-page">
+    <a class="home-button" href="../index.html" aria-label="Go to homepage">
+      <span class="home-icon" aria-hidden="true"></span>
+    </a>
+
+    <main class="actor-network-page">
+      <figure class="actor-network-figure" aria-label="Actor Network Diagram">
+        <div
+          id="actor-network"
+          class="actor-network-diagram"
+          aria-label="Interactive actor network diagram"
+        ></div>
+
+        <noscript>
+          <p class="actor-network-fallback">
+            Enable JavaScript to view the interactive actor network diagram.
+          </p>
+        </noscript>
+      </figure>
+    </main>
+
+    <script src="https://cdn.jsdelivr.net/npm/d3@7"></script>
+    <script src="actor-network.js"></script>
+  </body>
+</html>

@@ -49,7 +49,7 @@ body {
   height: 30px;
   place-items: center;
   border-radius: 50%;
-  background: var(--cook-red);
+  background: #7c3f98;
   color: #fff;
   font-family: Arial, sans-serif;
   font-size: 20px;
@@ -93,7 +93,7 @@ body {
   left: 4px;
   width: 3px;
   height: 5px;
-  background: var(--cook-red);
+  background: #7c3f98;
   content: "";
 }
 

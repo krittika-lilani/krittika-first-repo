@@ -1,7 +1,9 @@
 // This script creates a D3.js breakfast timeline by loading data from a CSV file
 
+// Keep the chart's variables and helper functions out of the global scope.
 (function() {
   // Set up the SVG container
+  // The inner plotting area is the full SVG size minus these label margins.
   const margin = { top: 40, right: 40, bottom: 60, left: 150 };
   const width = 900 - margin.left - margin.right;
   const height = 600 - margin.top - margin.bottom;
@@ -66,7 +68,7 @@
   d3.csv('data-visualization/events.csv').then(function(data) {
     console.log('CSV data loaded:', data);
 
-    // Convert the start and end values into numbers
+    // CSV values arrive as strings, so convert times before building scales or widths.
     data.forEach(function(d) {
       d.start = parseInt(d.start);
       d.end = parseInt(d.end);
@@ -136,7 +138,8 @@ svg.append('line')
       .style('fill', chartTextColor)
       .text('Minutes');
 
-    // Add the activity bars
+    // Add the activity bars. Horizontal position shows the start time and width
+    // shows how many minutes the activity lasts.
     svg.selectAll('.event-bar')
       .data(data)
       .enter()
@@ -153,6 +156,7 @@ svg.append('line')
       .attr('stroke-width', 1)
       .style('cursor', 'pointer')
       .style('opacity', 0.9)
+      // Highlight the active bar and reveal its detailed timing tooltip.
       .on('mouseover', function(event, d) {
         d3.select(this)
           .transition()
@@ -199,6 +203,7 @@ svg.append('line')
       .append('circle')
       .attr('class', 'icon-bg')
       .attr('cx', d => {
+        // Keep icons near an activity's end without allowing them past the chart edge.
         const xPosition =
           timeScale(d.end) + iconOffset + iconSize / 2;
 
@@ -240,6 +245,7 @@ svg.append('line')
       .attr('preserveAspectRatio', 'xMidYMid meet');
 
     // Add the legend
+    // Use the same categories and color scale as the timeline bars.
     const legend = svg.append('g')
       .attr('class', 'legend')
       .attr('transform', `translate(${width - 165}, 18)`);
@@ -281,6 +287,7 @@ svg.append('line')
 
     console.log('D3.js breakfast timeline loaded successfully!');
   }).catch(function(error) {
+    // Replace the missing visualization with an in-chart loading error message.
     console.error('Error loading CSV file:', error);
 
     svg.append('text')
@@ -316,6 +323,7 @@ svg.append('line')
     .style('transition', 'opacity 0.2s');
 
   function showTooltip(event, d) {
+    // Derive the duration from the same start and end values used to draw the bar.
     const duration = d.end - d.start;
 
     tooltip.transition()
@@ -333,6 +341,7 @@ svg.append('line')
   }
 
   function hideTooltip() {
+    // Fade the existing tooltip instead of removing and recreating it.
     tooltip.transition()
       .duration(200)
       .style('opacity', 0);

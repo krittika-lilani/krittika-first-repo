@@ -1,0 +1,25 @@
+source,target,secondary,relationship,relationship_type
+what-i-eat-when,tired,,includes,input
+what-i-eat-when,rainy-day,,includes,input
+what-i-eat-when,happy,,includes,input
+what-i-eat-when,stressed,,includes,input
+what-i-eat-when,sick,,includes,input
+what-i-eat-when,date-night,,includes,input
+what-i-eat-when,need-comfort,,includes,input
+what-i-eat-when,homesick,,includes,input
+what-i-eat-when,working-late,,includes,input
+tired,pasta,,leads to,production
+rainy-day,ramen,,leads to,production
+happy,full-indian-meal,,leads to,production
+stressed,eggs,,leads to,production
+sick,toast,,leads to,production
+date-night,something-fancy,,leads to,production
+need-comfort,curd-rice,,leads to,production
+homesick,rasam,,leads to,production
+working-late,coffee,,leads to,production
+curd-rice,home,,belongs at,communication
+rasam,chennai,,connects to,communication
+full-indian-meal,chennai,,connects to,communication
+ramen,new-york,,connects to,communication
+coffee,studio,,belongs at,communication
+something-fancy,restaurant,,belongs at,communication

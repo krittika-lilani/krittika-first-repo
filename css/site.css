@@ -41,7 +41,7 @@ a {
   height: 30px;
   place-items: center;
   border-radius: 50%;
-  background: #9f241f;
+  background: #7c3f98;
   color: #fff;
   font-family: Arial, sans-serif;
   font-size: 20px;
@@ -85,7 +85,7 @@ a {
   left: 4px;
   width: 3px;
   height: 5px;
-  background: #9f241f;
+  background: #7c3f98;
   content: "";
 }
 
@@ -150,12 +150,45 @@ a {
   font-family: "Space Mono", monospace;
 }
 
+.relational-page {
+  width: 100%;
+  max-width: none;
+  min-height: 100svh;
+  margin: 0;
+  background: rgba(255, 75, 31, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(255, 144, 104, 0.7),
+    rgba(255, 75, 31, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 144, 104, 0.7),
+    rgba(255, 75, 31, 0.7)
+  );
+}
+
 .project-grid {
   display: grid;
   width: 100vw;
   height: 100svh;
   grid-template-columns: repeat(4, minmax(0, 1fr));
   grid-template-rows: repeat(2, minmax(0, 1fr));
+}
+
+.site-credit {
+  position: absolute;
+  right: 12px;
+  bottom: 12px;
+  z-index: 2;
+  margin: 0;
+  padding: 3px 6px;
+  background: #fff;
+  color: #7c3f98;
+  font-family: "Space Mono", monospace;
+  font-size: clamp(0.76rem, 1.06vw, 1.06rem);
+  font-weight: 400;
+  line-height: 1.2;
 }
 
 .project-cell {
@@ -165,6 +198,14 @@ a {
   min-height: 0;
   color: #3a2618;
   text-decoration: none;
+  transition:
+    filter 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.project-cell:not(.project-cell--blank):hover {
+  filter: saturate(1.24) brightness(1.08);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.86);
 }
 
 .project-cell:focus-visible {
@@ -173,73 +214,168 @@ a {
   outline-offset: -3px;
 }
 
-.project-label {
+.project-copy {
   position: absolute;
-  bottom: 12px;
+  top: 12px;
+  right: 12px;
   left: 12px;
-  display: inline-flex;
-  max-width: calc(100% - 24px);
-  align-items: center;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   gap: 8px;
-  padding: 3px 6px;
-  background: #fff;
   color: #3a2618;
   font-family: "Space Mono", monospace;
-  font-size: clamp(0.48rem, 0.72vw, 0.68rem);
+  transition: transform 180ms ease;
+}
+
+.project-cell:hover .project-copy,
+.project-cell:focus-visible .project-copy {
+  transform: translateY(-5px);
+}
+
+.project-category {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin-left: -12px;
+  padding: 3px 6px 3px 12px;
+  background: #fff;
+  color: #3a2618;
+  font-size: clamp(0.76rem, 1.06vw, 1.06rem);
   font-weight: 400;
   line-height: 1.2;
 }
 
-.project-label > span {
-  font-size: 1.15em;
-  line-height: 1;
+.project-heading {
+  max-width: 100%;
+  margin: 0;
+  overflow: hidden;
+  color: #7c3f98;
+  font-family: "Space Mono", monospace;
+  font-size: clamp(0.7rem, 0.96vw, 0.96rem);
+  font-weight: 400;
+  line-height: 1.2;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
-.project-cell:hover .project-label > span,
-.project-cell:focus-visible .project-label > span {
-  transform: translateX(2px);
+.project-subheading {
+  max-width: 100%;
+  margin: 0;
+  color: #fff;
+  font-size: clamp(0.64rem, 0.88vw, 0.88rem);
+  font-weight: 400;
+  line-height: 1.3;
+  text-shadow: 0 1px 4px rgba(58, 38, 24, 0.24);
+}
+
+.project-category > span {
+  font-size: 1.15em;
+  line-height: 1;
+  transition: transform 180ms ease;
+}
+
+.project-cell:hover .project-category > span,
+.project-cell:focus-visible .project-category > span {
+  transform: translateX(6px);
 }
 
 .project-cell--one {
-  background: #fceabb;
-  background: -webkit-linear-gradient(to right, #f8b500, #fceabb);
-  background: linear-gradient(to right, #f8b500, #fceabb);
+  background: rgba(252, 234, 187, 0.8);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(248, 181, 0, 0.8),
+    rgba(252, 234, 187, 0.8)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(248, 181, 0, 0.8),
+    rgba(252, 234, 187, 0.8)
+  );
 }
 
 .project-cell--two {
-  background: #f46b45;
-  background: -webkit-linear-gradient(to right, #eea849, #f46b45);
-  background: linear-gradient(to right, #eea849, #f46b45);
+  background: rgba(244, 107, 69, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(238, 168, 73, 0.7),
+    rgba(244, 107, 69, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(238, 168, 73, 0.7),
+    rgba(244, 107, 69, 0.7)
+  );
 }
 
 .project-cell--three {
-  background: #c21500;
-  background: -webkit-linear-gradient(to right, #ffc500, #c21500);
-  background: linear-gradient(to right, #ffc500, #c21500);
+  background: rgba(194, 21, 0, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(255, 197, 0, 0.7),
+    rgba(194, 21, 0, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 197, 0, 0.7),
+    rgba(194, 21, 0, 0.7)
+  );
 }
 
 .project-cell--four {
-  background: #ff4b1f;
-  background: -webkit-linear-gradient(to right, #ff9068, #ff4b1f);
-  background: linear-gradient(to right, #ff9068, #ff4b1f);
+  background: rgba(255, 75, 31, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(255, 144, 104, 0.7),
+    rgba(255, 75, 31, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(255, 144, 104, 0.7),
+    rgba(255, 75, 31, 0.7)
+  );
 }
 
 .project-cell--five {
-  background: #d38312;
-  background: -webkit-linear-gradient(to right, #a83279, #d38312);
-  background: linear-gradient(to right, #a83279, #d38312);
+  background: rgba(211, 131, 18, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(168, 50, 121, 0.7),
+    rgba(211, 131, 18, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(168, 50, 121, 0.7),
+    rgba(211, 131, 18, 0.7)
+  );
 }
 
 .project-cell--six {
-  background:
-    linear-gradient(rgba(255, 255, 255, 0.4), rgba(255, 255, 255, 0.4)),
-    url("../recipe-game/assets/landing-gradient.png") center / cover no-repeat;
+  background: rgba(255, 78, 80, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(249, 212, 35, 0.7),
+    rgba(255, 78, 80, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(249, 212, 35, 0.7),
+    rgba(255, 78, 80, 0.7)
+  );
 }
 
 .project-cell--seven {
-  background: #e65c00;
-  background: -webkit-linear-gradient(to right, #f9d423, #e65c00);
-  background: linear-gradient(to right, #f9d423, #e65c00);
+  background: rgba(230, 92, 0, 0.7);
+  background: -webkit-linear-gradient(
+    to right,
+    rgba(249, 212, 35, 0.7),
+    rgba(230, 92, 0, 0.7)
+  );
+  background: linear-gradient(
+    to right,
+    rgba(249, 212, 35, 0.7),
+    rgba(230, 92, 0, 0.7)
+  );
 }
 
 .project-cell--blank {

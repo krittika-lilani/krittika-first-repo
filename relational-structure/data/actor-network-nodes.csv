@@ -1,0 +1,25 @@
+id,title,abbreviation,subtitle,width,height,targetX,targetY,central,fx,fy,x,y,category,description
+what-i-eat-when,"[""WHAT I EAT WHEN...""]",,[],300,180,800,450,true,800,450,800,450,central,The central question connecting situations to foods and places.
+tired,"[""TIRED""]",,[],190,80,560,230,,,,560,230,situation,A situation connected to pasta.
+rainy-day,"[""RAINY DAY""]",,[],200,80,800,170,,,,800,170,situation,A situation connected to ramen.
+happy,"[""HAPPY""]",,[],190,80,1040,230,,,,1040,230,situation,A situation connected to a full Indian meal.
+stressed,"[""STRESSED""]",,[],200,80,1140,380,,,,1140,380,situation,A situation connected to eggs.
+sick,"[""SICK""]",,[],180,80,1080,570,,,,1080,570,situation,A situation connected to toast.
+date-night,"[""DATE NIGHT""]",,[],210,80,900,700,,,,900,700,situation,A situation connected to something fancy.
+need-comfort,"[""NEED COMFORT""]",,[],230,80,650,700,,,,650,700,situation,A situation connected to curd rice.
+homesick,"[""HOMESICK""]",,[],200,80,480,560,,,,480,560,situation,A situation connected to rasam.
+working-late,"[""WORKING LATE""]",,[],230,80,460,380,,,,460,380,situation,A situation connected to coffee.
+pasta,"[""PASTA""]",,[],180,80,300,90,,,,300,90,food,What I eat when tired.
+ramen,"[""RAMEN""]",,[],180,80,800,70,,,,800,70,food,What I eat on a rainy day.
+full-indian-meal,"[""FULL INDIAN MEAL""]",,[],250,80,1300,90,,,,1300,90,food,What I eat when happy.
+eggs,"[""EGGS""]",,[],180,80,1460,300,,,,1460,300,food,What I eat when stressed.
+toast,"[""TOAST""]",,[],180,80,1400,620,,,,1400,620,food,What I eat when sick.
+something-fancy,"[""SOMETHING FANCY""]",,[],250,80,1180,820,,,,1180,820,food,What I eat on date night.
+curd-rice,"[""CURD RICE""]",,[],200,80,500,820,,,,500,820,food,What I eat when I need comfort.
+rasam,"[""RASAM""]",,[],180,80,160,620,,,,160,620,food,What I eat when homesick.
+coffee,"[""COFFEE""]",,[],180,80,140,300,,,,140,300,food,What I have when working late.
+home,"[""HOME""]",,[],180,80,300,780,,,,300,780,place,A place connected to curd rice.
+chennai,"[""CHENNAI""]",,[],190,80,800,820,,,,800,820,place,A place connected to rasam and a full Indian meal.
+new-york,"[""NEW YORK""]",,[],190,80,1300,780,,,,1300,780,place,A place connected to ramen.
+studio,"[""STUDIO""]",,[],180,80,1450,500,,,,1450,500,place,A place connected to coffee.
+restaurant,"[""RESTAURANT""]",,[],210,80,1450,140,,,,1450,140,place,A place connected to something fancy.

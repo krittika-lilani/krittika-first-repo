@@ -4,34 +4,40 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Spatial Canvases | Computational Design Practice</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bitcount+Grid+Single+Ink:wght@700&family=Space+Mono:wght@400&display=swap"
+      rel="stylesheet"
+    />
     <link rel="stylesheet" href="css/site.css" />
-    <link rel="stylesheet" href="css/spatial-canvases.css" />
+    <link rel="stylesheet" href="spatial-canvases/spatial-canvases.css" />
   </head>
-  <body>
+  <body class="spatial-page">
     <a class="home-button" href="index.html" aria-label="Go to homepage">
       <span class="home-icon" aria-hidden="true"></span>
     </a>
     <main class="page">
-      <nav class="site-nav" aria-label="Site navigation">
-        <a href="index.html">Home</a>
-        <a href="spatial-canvases.html">Spatial Canvases</a>
-        <a href="data-visualization.html">Data Visualization</a>
-        <a href="geospatial-structures.html">Geospatial Structures</a>
-        <a href="recipe-game/index.html">Engagement</a>
-      </nav>
-
       <section class="canvas-section">
         <div id="static-canvas-container"></div>
-        <button class="yolk-button" type="button">break the yolk</button>
+        <button class="yolk-button" type="button">
+          break the yolk
+          <span class="yolk-button__handle yolk-button__handle--top-left" aria-hidden="true"></span>
+          <span class="yolk-button__handle yolk-button__handle--top-right" aria-hidden="true"></span>
+          <span class="yolk-button__handle yolk-button__handle--bottom-left" aria-hidden="true"></span>
+          <span class="yolk-button__handle yolk-button__handle--bottom-right" aria-hidden="true"></span>
+        </button>
       </section>
 
       <div class="section-divider" aria-hidden="true"></div>
 
       <section class="three-section" aria-label="3D spatial canvases">
         <div class="three-canvas-group">
+          <p class="orbit-hint"><span class="orbit-icon" aria-hidden="true"></span>orbit to move</p>
           <div id="three-canvas-forms" class="three-canvas"></div>
         </div>
         <div class="three-canvas-group">
+          <p class="orbit-hint"><span class="orbit-icon" aria-hidden="true"></span>orbit to move</p>
           <div id="three-canvas-light" class="three-canvas"></div>
         </div>
       </section>

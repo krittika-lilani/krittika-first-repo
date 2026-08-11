@@ -1,10 +1,14 @@
+// p5 instance-mode sketch for the interactive 2D breakfast canvas.
 const staticSketch = (p) => {
+  // These values describe the current animation phase and the 0-to-1 progress
+  // used by the moving bread, pressed bread, broken yolk, and disturbed sauce.
   let animationPhaseName = "idle";
   let phaseStartTime = 0;
   let breadMoveAmount = 0;
   let breadPressAmount = 0;
   let yolkBreakAmount = 0;
   let disturbedSauceAmount = 0;
+  // Fixed phase durations keep the bread movement and yolk break timing separate.
   const movingBreadDuration = 800;
   const breakingYolkDuration = 1050;
 
@@ -14,6 +18,7 @@ const staticSketch = (p) => {
   // This point is placed on the visible yellow yolk of the nearest poached egg.
   const yolkContactPoint = { x: 272, y: 306 };
 
+  // Create the canvas, connect the button interaction, and pause drawing until clicked.
   p.setup = function () {
     p.pixelDensity(1);
     let canvas = p.createCanvas(600, 600);
@@ -34,6 +39,7 @@ const staticSketch = (p) => {
     p.noLoop();
   };
 
+  // Redraw the full still life from back to front for the current animation state.
   p.draw = function () {
     updateAnimationPhase();
 
@@ -460,6 +466,7 @@ const staticSketch = (p) => {
   }
 
   function drawPoachedEgg(x, y, turn, breakAmount = 0) {
+    // `breakAmount` fades the first yolk as the separate broken-yolk layer spreads.
     p.push();
     p.translate(x, y);
     p.rotate(p.radians(turn));
@@ -626,6 +633,7 @@ const staticSketch = (p) => {
   }
 
   function drawDill() {
+    // Reuse one sprig shape at several positions and rotations across the plate.
     p.stroke(83, 119, 57);
     p.strokeWeight(2);
 
@@ -651,4 +659,5 @@ const staticSketch = (p) => {
   }
 };
 
+// Start the sketch after all drawing and interaction functions have been defined.
 new p5(staticSketch);

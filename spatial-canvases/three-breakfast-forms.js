@@ -4,11 +4,13 @@
 
 const formsContainer = document.getElementById("three-canvas-forms");
 
+// Build the scene only when its matching page container exists.
 if (formsContainer) {
   // The scene is the 3D world. All objects, lights, and the camera live here.
   const scene = new THREE.Scene();
   scene.background = new THREE.Color("#fffaf2");
 
+  // Group the food model so its meshes share one scene-level parent.
   const breakfast = new THREE.Group();
   scene.add(breakfast);
 
@@ -81,6 +83,7 @@ if (formsContainer) {
   const breadMat = new THREE.MeshStandardMaterial({ color: "#c78e4d", roughness: 0.92, metalness: 0 });
   const breadSpotMat = new THREE.MeshStandardMaterial({ color: "#74451c", roughness: 0.94, metalness: 0 });
 
+  // Standardize shadow settings whenever a mesh is added to the model.
   function addMesh(mesh, parent = breakfast) {
     mesh.castShadow = true;
     mesh.receiveShadow = true;
@@ -88,6 +91,7 @@ if (formsContainer) {
     return mesh;
   }
 
+  // Reusable primitive helpers keep the ingredient construction concise.
   function ellipsoid(x, y, z, sx, sy, sz, material, parent = breakfast) {
     const mesh = new THREE.Mesh(new THREE.SphereGeometry(1, 28, 14), material);
     mesh.position.set(x, y, z);
@@ -118,6 +122,7 @@ if (formsContainer) {
   rimHighlight.rotation.x = Math.PI / 2;
   rimHighlight.position.y = 0.19;
 
+  // Place one short decorative dash around the circular plate rim.
   function rimDash(angle, length, width) {
     const radius = 2.97;
     const dash = new THREE.Mesh(new THREE.BoxGeometry(length, 0.018, width), plateBlue);
@@ -249,6 +254,7 @@ if (formsContainer) {
   breadPiece(2.1, 0.78, -0.65, 1.05);
   breadPiece(2.48, 1.2, -0.28, 0.88);
 
+  // Keep the orthographic view framed consistently as the canvas changes size.
   function resizeRendererToContainer() {
     const width = formsContainer.clientWidth;
     const height = formsContainer.clientHeight;
@@ -266,6 +272,7 @@ if (formsContainer) {
   resizeRendererToContainer();
   window.addEventListener("resize", resizeRendererToContainer);
 
+  // Update damped orbit controls and redraw the scene on every frame.
   function animate() {
     requestAnimationFrame(animate);
     controls.update();

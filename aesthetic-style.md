@@ -1,47 +1,36 @@
-# Aesthetic Style: Retro Browser Window
+# Website Visual System
 
-For my updated website, I used a retro computer-window aesthetic inspired by early internet interfaces, simple browser pop-ups, and graphic educational web visuals.
+## Overall visual direction
 
-The page keeps the original “Hello, World!” text, but places it inside a large cream-colored browser window. The background uses a bright orange grid, which gives the site a playful digital feeling while still keeping the composition simple and readable.
+The website combines food imagery with a playful computational-design aesthetic. Soft breakfast-inspired gradients and illustrated ingredients are paired with interface details borrowed from creative software: bounding boxes, selection handles, thin strokes, compact labels, and simple controls. The result feels warm and handmade while still referencing digital tools and structured data.
 
-## Visual inspiration
+## Typography
 
-The design is inspired by:
+Space Mono is the primary typeface for navigation, labels, descriptions, forms, cards, and interface text. It gives the projects a consistent technical voice. Bitcount Grid Single Ink is used selectively for expressive display text, especially in the engagement project and prominent interactive labels. Type is generally lowercase, compact, and set at a light or regular weight.
 
-- early web browser windows
-- old computer pop-ups
-- Y2K internet graphics
-- educational software layouts
-- bold grid backgrounds
-- simple black outlines
-- typewriter-style text
+## Gradients
 
-## Design choices
+Each class object has its own warm gradient on the homepage. These gradients act as project identifiers, and some continue onto their corresponding project pages at a softer opacity. Other projects use a visual system suited to their content, such as the geospatial map, engagement game, and Chef Agent. Yellow, orange, coral, red, and purple transitions keep the portfolio varied without breaking the larger visual family.
 
-### Color
+## Color palette
 
-The main colors are orange, yellow, cream, and black.
+The core palette includes:
 
-The orange grid background creates energy and makes the page feel playful. The cream window softens the design and makes the text easier to read. The black outlines make the shapes feel graphic and cartoon-like.
+- warm yellow and cream
+- orange, coral, and tomato red
+- maroon for interface text and borders
+- onion purple (`#7c3f98`) for headings and home buttons
+- white for labels, descriptions, icons, and contrast
+- occasional blue for active or selected states
 
-### Typography
+## Borders and buttons
 
-I used a monospace/typewriter-style font because it connects to coding, GitHub, and beginner programming. Since “Hello, World!” is often the first phrase people write when learning code, the typewriter feeling makes the page feel connected to that learning process.
+Borders are thin, rectangular, and often reference Adobe Illustrator selection boxes. Small white square handles appear at corners where an object is meant to feel selected or editable. Buttons use clear rectangular outlines, visible padding, pointer cursors, and distinct hover and pressed states. Circular purple home buttons provide consistent navigation back to the homepage.
 
-### Composition
+## Homepage grid
 
-The layout is centered around one large browser-style window. Smaller windows float around it to create depth and make the site feel like a desktop interface.
+The homepage is a full-screen four-column by two-row grid. The first seven cells represent the seven class objects, while the final white cell holds the site credit. Every project tile uses the same top-left hierarchy: a white category label, a purple heading, and a compact white description. Hover states brighten the gradient, add a thin inset frame, lift the text, and move the arrow. The gradient of each cell matches the object background inside it.
 
-The bottom floating window includes a live clock, which adds a small interactive element without making the website too complicated.
+## Connected but flexible project pages
 
-## Why this aesthetic fits
-
-This aesthetic fits the assignment because it modifies a basic website template through visual decisions like color, spacing, typography, composition, borders, and layering.
-
-The website is still simple, but it now has a clear visual identity. It feels like a playful first coding project rather than a default “Hello, World!” page.
-
-## Files used
-
-- `index.html` controls the structure of the page.
-- `style.css` controls the orange grid, browser windows, typography, borders, and layout.
-- `aesthetic-style.md` explains the design style and choices.
+Each project can use its own background, palette, layout, imagery, interactions, and data language when that better serves the work. A project page does not need to reproduce its homepage gradient exactly. The portfolio stays connected through repeated typography, purple and maroon accents, thin borders, compact interface labels, playful computational details, and the shared home button. These common elements allow the 2D and 3D canvases, visualization, map, game, network, and chatbot to feel distinct while remaining part of one portfolio.

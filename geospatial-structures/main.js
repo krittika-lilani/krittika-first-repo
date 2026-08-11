@@ -1,3 +1,4 @@
+// Initialize the MapLibre map with the project's default visual mood and NYC view.
 const map = new maplibregl.Map({
   container: "map",
   style: "style-pink-teal.json",
@@ -7,6 +8,8 @@ const map = new maplibregl.Map({
 
 map.addControl(new maplibregl.NavigationControl());
 
+// Keep each marker paired with its GeoJSON feature so the same filter state can
+// control both the map markers and the recommendation list.
 const recommendationMarkers = [];
 let recommendationsData;
 const categoryInputs = document.querySelectorAll(
@@ -24,6 +27,8 @@ function getSelectedBorough() {
     .borough;
 }
 
+// Convert detailed dataset neighborhood names into the shorter groups shown in
+// the neighborhood filter. Empty returns intentionally omit selected outliers.
 function getNeighborhoodGroup(neighborhood) {
   if (!neighborhood) {
     return "";
@@ -122,6 +127,7 @@ function getNeighborhoodGroup(neighborhood) {
   return neighborhood;
 }
 
+// Read the three filter controls into one state object for consistent matching.
 function getFilterState() {
   return {
     selectedCategories: new Set(
@@ -134,6 +140,7 @@ function getFilterState() {
   };
 }
 
+// A recommendation remains visible only when it passes every active filter.
 function matchesFilters(feature, filterState) {
   const featureCategories = (feature.properties.Categories || "")
     .split("|")
@@ -203,6 +210,8 @@ function renderList(filteredRecommendations) {
   });
 }
 
+// Apply the active filters to map markers and list cards at the same time, and
+// close popups belonging to markers that become hidden.
 function applyCategoryFilters() {
   const filterState = getFilterState();
   const filteredRecommendations = [];
@@ -227,6 +236,7 @@ function applyCategoryFilters() {
   allCategoriesButton.setAttribute("aria-pressed", String(allSelected));
 }
 
+// Switch between map and list views without changing the active filters.
 viewButtons.forEach((button) => {
   button.addEventListener("click", () => {
     const showList = button.dataset.view === "list";
@@ -273,6 +283,8 @@ boroughButtons.forEach((button) => {
   });
 });
 
+// Rebuild the neighborhood menu from the neighborhoods available in the
+// currently selected borough.
 function populateNeighborhoodFilter(features, borough = "") {
   neighborhoodSelect.replaceChildren();
 
@@ -300,6 +312,8 @@ function populateNeighborhoodFilter(features, borough = "") {
   });
 }
 
+// Share the selected map mood's colors with marker and filter styling through
+// CSS custom properties.
 function updateMarkerBadgeColors(swatch) {
   const mapContainer = map.getContainer();
   mapContainer.style.setProperty("--marker-badge-halo", swatch.dataset.landColor);
@@ -319,6 +333,8 @@ function updateMarkerBadgeColors(swatch) {
 
 updateMarkerBadgeColors(document.querySelector(".map-mood__swatch.is-active"));
 
+// MapLibre removes custom sources when a new basemap style is loaded, so restore
+// the recommendations source after every style change.
 function restoreRecommendationsSource() {
   if (recommendationsData && !map.getSource("recommendations")) {
     map.addSource("recommendations", {
@@ -330,6 +346,7 @@ function restoreRecommendationsSource() {
 
 map.on("style.load", restoreRecommendationsSource);
 
+// Escape dataset text before placing it inside popup HTML.
 function escapeHtml(value) {
   const element = document.createElement("div");
   element.textContent = value ?? "";
@@ -358,6 +375,8 @@ function createPopup(feature) {
 
 map.on("load", async () => {
   try {
+    // Load the copied recommendation dataset, normalize its neighborhood groups,
+    // then create one accessible marker and popup per feature.
     const response = await fetch("data/nyc-recommendations.geojson");
 
     if (!response.ok) {
@@ -405,6 +424,8 @@ map.on("load", async () => {
   }
 });
 
+// Change the basemap mood while preserving the current camera position and
+// keeping the recommendation data, filters, and markers intact.
 document.querySelectorAll(".map-mood__swatch").forEach((swatch) => {
   swatch.addEventListener("click", () => {
     if (swatch.classList.contains("is-active")) {

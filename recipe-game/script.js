@@ -1,3 +1,4 @@
+// Connect the game to the shared Firebase project and the `dishes` collection.
 const firebaseConfig = {
   apiKey: "AIzaSyDMe_hgk7nSMfyIHRS5rJ6uDb4yeJC2ASQ",
   authDomain: "comp-design-46068.firebaseapp.com",
@@ -11,6 +12,7 @@ const firebaseConfig = {
 firebase.initializeApp(firebaseConfig);
 const dishesRef = firebase.database().ref("dishes");
 
+// Cache the page elements used by the ingredient picker, form, and card list.
 const ingredientHolders = document.querySelectorAll(".ingredient-holder");
 const selectedIngredientsList = document.querySelector(
   "#selected-ingredients-list",
@@ -22,6 +24,8 @@ const addDishButton = document.querySelector("#add-dish-button");
 const recipeCards = document.querySelector("#recipe-cards");
 let detectedCity = "Unknown location";
 
+// Detect only the visitor's approximate city for the submitted dish metadata.
+// If the request fails or returns no city, keep the privacy-safe fallback value.
 fetch(
   "https://api.bigdatacloud.net/data/reverse-geocode-client?localityLanguage=en",
 )
@@ -39,6 +43,8 @@ fetch(
     detectedCity = "Unknown location";
   });
 
+// Enable the form fields after two ingredients are selected, then enable the
+// submit button once the user has also entered a dish name.
 function updateAddDishButton() {
   const selectedCount = document.querySelectorAll(
     ".ingredient-holder.selected",
@@ -51,6 +57,8 @@ function updateAddDishButton() {
   addDishButton.disabled = !hasEnoughIngredients || !hasDishName;
 }
 
+// Rebuild the visible ingredient-name list from the holders currently marked
+// with the existing `selected` class.
 function updateSelectedIngredients() {
   const selectedNames = Array.from(ingredientHolders)
     .filter((holder) => holder.classList.contains("selected"))
@@ -67,12 +75,15 @@ function updateSelectedIngredients() {
   updateAddDishButton();
 }
 
+// Toggle one ingredient's visual and accessible selected state.
 function toggleIngredient(holder) {
   const isSelected = holder.classList.toggle("selected");
   holder.setAttribute("aria-pressed", String(isSelected));
   updateSelectedIngredients();
 }
 
+// Turn a dish object from Firebase into a recipe card and place the newest card
+// at the top of the sidebar.
 function createRecipeCard(dish) {
   const card = document.createElement("article");
   card.className = "recipe-card";
@@ -110,6 +121,8 @@ function createRecipeCard(dish) {
   recipeCards.prepend(card);
 }
 
+// Firebase emits `child_added` once for every existing dish and again whenever
+// a new dish is saved, keeping the sidebar synchronized without duplicate local cards.
 dishesRef.on(
   "child_added",
   (snapshot) => {
@@ -120,6 +133,7 @@ dishesRef.on(
   },
 );
 
+// Support ingredient selection with both pointer clicks and keyboard controls.
 ingredientHolders.forEach((holder) => {
   holder.addEventListener("click", () => {
     toggleIngredient(holder);
@@ -133,8 +147,11 @@ ingredientHolders.forEach((holder) => {
   });
 });
 
+// Recheck form validity whenever the required dish name changes.
 dishNameInput.addEventListener("input", updateAddDishButton);
 
+// Assemble the current selections and form values into one dish object, then
+// save it to Firebase. The realtime listener above creates the visible card.
 dishForm.addEventListener("submit", (event) => {
   event.preventDefault();
 

@@ -4,6 +4,7 @@
 
 const lightContainer = document.getElementById("three-canvas-light");
 
+// Build the lighting study only when its matching page container exists.
 if (lightContainer) {
   // Scene: the 3D world for the tabletop material / lighting / fog study.
   const scene = new THREE.Scene();
@@ -103,6 +104,7 @@ if (lightContainer) {
     metalness: 0
   });
 
+  // Apply the same shadow behavior whenever a mesh is added to the scene or a group.
   function addMesh(mesh, parent = scene) {
     mesh.castShadow = true;
     mesh.receiveShadow = true;
@@ -189,6 +191,7 @@ if (lightContainer) {
     transparent: true,
     opacity: 0.45
   });
+  // Store each puff with its starting height and timing offset for gentle motion.
   const steamPuffs = [];
 
   [
@@ -203,6 +206,7 @@ if (lightContainer) {
     steamPuffs.push({ mesh: puff, baseY: y, offset: index * 0.8 });
   });
 
+  // Keep the perspective camera and renderer matched to the responsive container.
   function resizeRendererToContainer() {
     const width = lightContainer.clientWidth;
     const height = lightContainer.clientHeight;
@@ -224,6 +228,7 @@ if (lightContainer) {
     donutGroup.rotation.y += 0.008;
     donutGroup.position.y = 0.35 + Math.sin(time * 1.3) * 0.035;
 
+    // Give each steam puff a slightly different floating path while preserving its base position.
     steamPuffs.forEach(({ mesh, baseY, offset }) => {
       mesh.position.y = baseY + Math.sin(time * 0.9 + offset) * 0.035;
       mesh.position.x += Math.sin(time * 0.7 + offset) * 0.0008;
