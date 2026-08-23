@@ -1,9 +1,5 @@
-// Chef Agent: a food-focused chatbot with a dry, experimental-chef personality.
-// Firebase stores the shared chat history, while OpenAI generates each response
-// using the latest ten user and assistant messages as conversation memory.
-
-// SECURITY NOTE: The current project calls OpenAI directly from the browser.
-// A production version should keep the API key on a secure server.
+// Chef Agent: a food-focused chatbot interface.
+// Firebase stores the shared chat history while the agent is offline.
 
 // Wait for the DOM to be fully loaded before running any code
 document.addEventListener('DOMContentLoaded', function() {
@@ -28,21 +24,6 @@ document.addEventListener('DOMContentLoaded', function() {
 
   // Get a reference to the Firebase Realtime Database
   const database = firebase.database();
-
-  // ========================================
-  // OPENAI CONFIGURATION AND CONVERSATION MEMORY
-  // ========================================
-  // Keep the existing direct API configuration for the current Chef Agent setup.
-  const OPENAI_API_KEY = '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';
-  const OPENAI_API_URL = 'https://api.openai.com/v1/chat/completions';
-  
-  // Rate limiting configuration
-  let lastApiCall = 0;
-  const MIN_CALL_INTERVAL = 1000; // Minimum 1 second between calls
-  // Keep only the latest user and assistant messages sent to OpenAI so the bot
-  // remembers recent context without allowing the request history to grow forever.
-  const MAX_CONVERSATION_MESSAGES = 10;
-  const conversationHistory = [];
 
   // ========================================
   // PAGE ELEMENTS
@@ -132,9 +113,8 @@ document.addEventListener('DOMContentLoaded', function() {
       // Clear the input field
       messageInput.value = '';
       
-      // Ask the Chef Agent for a response.
-      updateChatStatus('Getting AI response...');
-      const aiResponse = await getChatGPTResponse(messageText);
+      // The live agent is offline, so return the same short status response.
+      const aiResponse = 'Chef Agent is currently offline.';
       
       // Save the response so the real-time listener can display it.
       await saveMessageToFirebase(aiResponse, 'bot');
@@ -173,157 +153,6 @@ document.addEventListener('DOMContentLoaded', function() {
     
     await database.ref('chat/messages').push(message);
     console.log('Message saved to Firebase:', message);
-  }
-
-  // ========================================
-  // OPENAI REQUESTS AND MEMORY HELPERS
-  // ========================================
-  // Send a message to ChatGPT API and get a response
-  
-  async function getChatGPTResponse(userMessage) {
-    // Add the newest user message before building the API request so the model
-    // receives the current prompt along with recent conversation context.
-    conversationHistory.push({
-      role: 'user',
-      content: userMessage
-    });
-    trimConversationHistory();
-
-    // Rate limiting: Ensure minimum time between API calls
-    const now = Date.now();
-    const timeSinceLastCall = now - lastApiCall;
-    
-    if (timeSinceLastCall < MIN_CALL_INTERVAL) {
-      const waitTime = MIN_CALL_INTERVAL - timeSinceLastCall;
-      console.log(`Rate limiting: Waiting ${waitTime}ms before next API call`);
-      updateChatStatus(`Rate limiting: Waiting ${Math.ceil(waitTime/1000)}s...`);
-      await new Promise(resolve => setTimeout(resolve, waitTime));
-    }
-    
-    lastApiCall = Date.now();
-    
-    // Retry temporary rate-limit failures with an increasing delay. Other
-    // errors are passed back to sendMessage for display.
-    const maxRetries = 3;
-    let retryCount = 0;
-    
-    while (retryCount < maxRetries) {
-      try {
-        const aiResponse = await makeApiCall();
-        conversationHistory.push({
-          role: 'assistant',
-          content: aiResponse
-        });
-        trimConversationHistory();
-        return aiResponse;
-      } catch (error) {
-        retryCount++;
-        
-        if (error.message.includes('429') && retryCount < maxRetries) {
-          const waitTime = Math.pow(2, retryCount) * 1000;
-          console.log(`Rate limit hit, retrying in ${waitTime/1000}s (attempt ${retryCount}/${maxRetries})`);
-          updateChatStatus(`Rate limited. Retrying in ${waitTime/1000}s... (${retryCount}/${maxRetries})`);
-          await new Promise(resolve => setTimeout(resolve, waitTime));
-          continue;
-        }
-        
-        throw error;
-      }
-    }
-  }
-
-  function trimConversationHistory() {
-    // Remove the oldest entries first and retain the latest ten messages.
-    if (conversationHistory.length > MAX_CONVERSATION_MESSAGES) {
-      conversationHistory.splice(
-        0,
-        conversationHistory.length - MAX_CONVERSATION_MESSAGES
-      );
-    }
-  }
-  
-  // Make the actual API call to ChatGPT
-  
-  async function makeApiCall() {
-    if (!OPENAI_API_KEY || OPENAI_API_KEY === 'your-openai-api-key-here') {
-      throw new Error('Please set your OpenAI API key. Get one from https://platform.openai.com/api-keys');
-    }
-    
-    // Prepare the request with the chef personality first, followed by the
-    // rolling user/assistant conversation history.
-    const requestBody = {
-      model: "gpt-3.5-turbo", // Using a valid model name
-      messages: [
-        {
-          role: "system",
-          content: "You are an experimental chef. Be dry, clever, calm, and slightly opinionated. Keep responses short, natural, conversational, and food-focused. You may suggest unusual combinations and say when something sounds questionable. Do not use food puns, exclamation marks, pet names, forced quirky language, or overly enthusiastic reactions."
-        },
-        ...conversationHistory
-      ],
-      max_tokens: 150,
-      temperature: 0.7
-    };
-
-    try {
-      console.log('=== CHATGPT API REQUEST DEBUG ===');
-      console.log('API URL:', OPENAI_API_URL);
-      console.log('Request body:', JSON.stringify(requestBody, null, 2));
-      
-      const headers = {
-        'Content-Type': 'application/json',
-        'Authorization': `Bearer ${OPENAI_API_KEY}`
-      };
-      
-      const response = await fetch(OPENAI_API_URL, {
-        method: 'POST',
-        headers: headers,
-        body: JSON.stringify(requestBody)
-      });
-
-      console.log('=== CHATGPT API RESPONSE DEBUG ===');
-      console.log('Response status:', response.status);
-      console.log('Response status text:', response.statusText);
-
-      if (!response.ok) {
-        // Preserve the API's response text so the caller receives useful error details.
-        let errorText = '';
-        try {
-          const errorData = await response.text();
-          errorText = errorData;
-        } catch (e) {
-          errorText = 'Could not read error response';
-        }
-        
-        throw new Error(`API request failed: ${response.status} ${response.statusText}\nResponse: ${errorText}`);
-      }
-
-      // Validate the expected Chat Completions response before reading its text.
-      const data = await response.json();
-      console.log('ChatGPT API response:', data);
-      
-      if (!data.choices || !data.choices[0] || !data.choices[0].message) {
-        throw new Error(`Unexpected API response structure: ${JSON.stringify(data)}`);
-      }
-      
-      const aiResponse = data.choices[0].message.content;
-      console.log('ChatGPT response text:', aiResponse);
-      return aiResponse;
-      
-    } catch (error) {
-      console.error('Error calling ChatGPT API:', error);
-      
-      if (error.name === 'TypeError' && error.message.includes('fetch')) {
-        throw new Error('Network error: Could not connect to ChatGPT API. Check your internet connection.');
-      } else if (error.message.includes('401')) {
-        throw new Error('Authentication error: Invalid API key. Please check your OpenAI API key.');
-      } else if (error.message.includes('429')) {
-        throw new Error('Rate limit exceeded. Please wait 1-2 minutes before trying again.');
-      } else if (error.message.includes('500')) {
-        throw new Error('Server error: ChatGPT API is experiencing issues. Please try again later.');
-      } else {
-        throw new Error(`ChatGPT API error: ${error.message}`);
-      }
-    }
   }
 
   // ========================================
@@ -456,23 +285,5 @@ document.addEventListener('DOMContentLoaded', function() {
   messageInput.focus();
   updateChatStatus('Ready to chat');
 
-  console.log('ChatGPT Chat Bot initialized successfully!');
-  
-  // Add a test function to the global scope for debugging
-  // It can be run manually from the browser console and is not part of normal chat flow.
-  window.testOpenAI = async function() {
-    console.log('=== TESTING OPENAI API ===');
-    try {
-      const testMessage = 'Hello, this is a test message.';
-      const response = await getChatGPTResponse(testMessage);
-      console.log('✅ API Test Successful!');
-      console.log('Response:', response);
-      alert('API Test Successful! Check console for details.');
-    } catch (error) {
-      console.error('❌ API Test Failed:', error);
-      alert('API Test Failed! Check console for details.');
-    }
-  };
-  
-  console.log('💡 To test your API setup, run: testOpenAI() in the console');
+  console.log('Chef Agent interface initialized successfully.');
 }); 
